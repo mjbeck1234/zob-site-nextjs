@@ -1,0 +1,16 @@
+name: scp files
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy files via SSH
+        uses: appleboy/scp-action@b476d5806f2a4c1ed5902a87fa91b0623cac7258
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          source: "site/"
+          target: site/
