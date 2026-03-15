@@ -9,6 +9,7 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => ({} as any));
     const icao = String(body?.icao ?? 'KDTW').trim().toUpperCase();
     const standId = String(body?.standId ?? '').trim();
+    const standLabel = String(body?.standLabel ?? body?.standRef ?? '').trim();
 
     // For pilot mode, we do not trust caller-provided callsigns.
     // Instead, derive the active pilot callsign from the logged-in user's CID.
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
       callsign = identity.callsign;
     }
 
-    const res = offlineClaim ? await claimRampStandOffline(icao, standId, callsign) : await claimRampStand(icao, standId, callsign);
+    const res = offlineClaim ? await claimRampStandOffline(icao, standId, callsign, standLabel) : await claimRampStand(icao, standId, callsign, standLabel);
     if (!res.ok) {
       return NextResponse.json({ ok: false, icao, error: res.error ?? 'Failed to claim stand' }, { status: 400 });
     }
@@ -51,8 +52,9 @@ export async function DELETE(req: Request) {
     const body = await req.json().catch(() => ({} as any));
     const icao = String(body?.icao ?? 'KDTW').trim().toUpperCase();
     const standId = String(body?.standId ?? '').trim();
+    const standLabel = String(body?.standLabel ?? body?.standRef ?? '').trim();
 
-    const res = await unclaimRampStand(icao, standId);
+    const res = await unclaimRampStand(icao, standId, standLabel);
     if (!res.ok) {
       return NextResponse.json({ ok: false, icao, error: res.error ?? 'Failed to unclaim stand' }, { status: 400 });
     }
