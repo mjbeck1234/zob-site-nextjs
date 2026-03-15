@@ -1,0 +1,655 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hero-themed dark UI (site-wide) */
+
+:root { color-scheme: dark; }
+
+html, body { height: 100%; }
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(1200px 700px at 20% -10%, rgba(253, 197, 24, 0.14), transparent 60%),
+    radial-gradient(900px 600px at 80% 0%, rgba(204, 204, 204, 0.06), transparent 55%),
+    radial-gradient(700px 500px at 50% 120%, rgba(66, 78, 81, 0.10), transparent 55%),
+    #0b0f10;
+  color: rgba(255,255,255,0.92);
+  font-family: var(--font-jost), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+a { color: rgba(253, 220, 128, 0.95); text-decoration: none; }
+a:hover { color: #fff; }
+
+/* Shared utility classes used across pages (re-skinned for dark hero theme) */
+
+.ui-card {
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.ui-card__header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ui-card__body { padding: 18px 20px; }
+
+.ui-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+.ui-table th {
+  text-align: left;
+  font-size: 12px;
+  color: rgba(255,255,255,0.60);
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.03);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.ui-table td {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.85);
+}
+
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.80);
+}
+
+
+/* NOTE: lesson plan rich text list markers + colors are handled later (including @media print).
+   Keep this section empty to avoid overriding dark-theme colors. */
+
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: background 140ms ease, transform 140ms ease, border-color 140ms ease;
+}
+
+.ui-button:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+.ui-button:active {
+  transform: translateY(1px);
+}
+
+.ui-button.danger {
+  border-color: rgba(248, 113, 113, 0.30);
+  background: rgba(248, 113, 113, 0.10);
+}
+
+/* Compatibility: older pages used ui-btn / ui-link naming */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: background 140ms ease, transform 140ms ease, border-color 140ms ease;
+}
+.ui-btn:hover { background: rgba(255,255,255,0.14); }
+.ui-btn:active { transform: translateY(1px); }
+
+.ui-btn--primary {
+  border-color: rgba(253, 197, 24, 0.35);
+  background: rgba(253, 197, 24, 0.18);
+}
+
+.ui-btn-danger, .ui-btn--danger {
+  border-color: rgba(248, 113, 113, 0.30);
+  background: rgba(248, 113, 113, 0.10);
+}
+
+.ui-btn-sm {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.ui-link {
+  color: rgba(253, 220, 128, 0.95);
+  text-decoration: none;
+}
+.ui-link:hover { color: #fff; }
+
+.ui-input {
+  width: 100%;
+  height: 42px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  padding: 0 14px;
+  outline: none;
+}
+
+.ui-input:focus {
+  border-color: rgba(255,255,255,0.18);
+}
+
+.ui-textarea {
+  width: 100%;
+  min-height: 180px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  padding: 12px 14px;
+  outline: none;
+}
+
+.ui-textarea:focus {
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* ---------- Rich HTML Editor (Lesson Plans) ---------- */
+.rich-ui-editor__shell {
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+
+.rich-ui-editor__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.12);
+}
+
+.rle-btn {
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.88);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.rle-btn:hover { background: rgba(255,255,255,0.08); }
+
+.rle-btn.is-disabled,
+.rle-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.rle-btn.is-disabled:hover,
+.rle-btn:disabled:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+.rle-btn.is-active {
+  background: rgba(253, 220, 128, 0.14);
+  border-color: rgba(253, 220, 128, 0.55);
+  color: rgba(255, 245, 220, 0.98);
+  box-shadow: inset 0 0 0 1px rgba(253, 220, 128, 0.08);
+}
+
+.rle-btn.is-active:hover {
+  background: rgba(253, 220, 128, 0.18);
+}
+
+.rle-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 2px;
+}
+
+.rle-spacer { flex: 1 1 auto; }
+
+.rich-ui-editor__content {
+  padding: 12px 14px;
+  outline: none;
+  color: rgba(255,255,255,0.90);
+}
+
+.rich-ui-editor__content:empty:before {
+  content: attr(data-placeholder);
+  color: rgba(255,255,255,0.35);
+}
+
+.rich-ui-editor__content ul {
+  list-style: disc;
+  margin-left: 1.25rem;
+}
+
+.rich-ui-editor__content ol {
+  list-style: decimal;
+  margin-left: 1.25rem;
+}
+
+.rich-ui-editor__content li { margin: 2px 0; }
+
+.rich-ui-editor__content a {
+  color: rgba(253, 220, 128, 0.95);
+  text-decoration: underline;
+}
+
+.rich-ui-editor__source {
+  width: 100%;
+  border: 0;
+  outline: none;
+  resize: vertical;
+  padding: 12px 14px;
+  background: transparent;
+  color: rgba(255,255,255,0.90);
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.rich-ui-editor__source::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+/* Old pages still using slate text utilities: make them readable on dark */
+.text-slate-500, .text-slate-600, .text-slate-700 { color: rgba(255,255,255,0.70) !important; }
+.border-slate-200, .border-slate-300 { border-color: rgba(255,255,255,0.10) !important; }
+.bg-white { background-color: rgba(255,255,255,0.03) !important; }
+
+/* Inputs (existing pages) */
+input, textarea, select {
+  color: rgba(255,255,255,0.90);
+}
+
+/* Make native select dropdowns readable in dark UI (Windows/Chrome uses light option menus by default) */
+select { color-scheme: dark; }
+select option {
+  background-color: #0b1220;
+  color: rgba(255,255,255,0.92);
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255,255,255,0.40);
+}
+
+/* Keep fixed backgrounds from breaking on iOS */
+@supports (-webkit-touch-callout: none) {
+  .ui-jumbotron, .ui-home-hero { background-attachment: scroll; }
+}
+
+/* ---------- Modal (Manage Controller) ---------- */
+.ui-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 28px 16px;
+  z-index: 100;
+}
+
+.ui-modal {
+  width: min(920px, 100%);
+  /* Dark modal to match the rest of the site (easier to read in dark UI) */
+  background: rgba(2, 6, 23, 0.94);
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+  overflow: hidden;
+  max-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+
+}
+
+.ui-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.ui-modal__close {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.ui-modal__close:hover {
+  background: rgba(255,255,255,0.10);
+}
+
+.ui-modal__body {
+  padding: 16px 18px 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 auto;
+  min-height: 0;
+
+}
+
+/* Light-mode inputs inside the modal, to mimic the old site's roster editor */
+.ui-modal .ui-input,
+.ui-modal .ui-textarea,
+.ui-modal select.ui-input {
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+}
+
+.ui-modal .ui-input:focus,
+.ui-modal .ui-textarea:focus {
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+.ui-modal input::placeholder,
+.ui-modal textarea::placeholder {
+  color: rgba(255,255,255,0.40);
+}
+
+.ui-modal select { color-scheme: dark; }
+.ui-modal select option { background-color: rgb(2, 6, 23); color: rgba(255,255,255,0.92); }
+
+.ui-modal hr { border-color: rgba(255,255,255,0.12); }
+
+/* Buttons inside the light modal should be visible (old site had a green Save + red Close). */
+.ui-modal .ui-button {
+  border-color: rgba(34, 197, 94, 0.65);
+  background: rgba(34, 197, 94, 0.92);
+  color: #fff;
+}
+.ui-modal .ui-button:hover {
+  background: rgba(34, 197, 94, 1.0);
+}
+
+.ui-modal .ui-btn {
+  border-color: rgba(244, 63, 94, 0.45);
+  background: rgba(244, 63, 94, 0.90);
+  color: #fff;
+}
+.ui-modal .ui-btn:hover {
+  background: rgba(244, 63, 94, 1.0);
+}
+
+
+/* IDS Ramp symbols */
+.ids-ramp-gate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: rgba(2, 6, 23, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  backdrop-filter: blur(2px);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ids-ramp-gate.open {
+  color: rgba(34, 197, 94, 0.95);
+  border-color: rgba(34, 197, 94, 0.55);
+}
+
+.ids-ramp-gate.held {
+  color: rgba(245, 158, 11, 0.95);
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.65);
+}
+.ids-ramp-gate.group {
+  color: rgba(147, 197, 253, 0.95);
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.55);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.55);
+  font-weight: 900;
+}
+
+
+.ids-ramp-gate.occ {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.75);
+}
+
+.ids-ramp-gate.manual {
+  border-style: dashed;
+}
+
+.ids-ramp-gate:empty {
+  width: 12px;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.ids-ramp-plane {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+}
+
+.ids-ramp-plane.parked {
+  color: rgba(96, 165, 250, 0.95);
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
+}
+
+.ids-ramp-plane.moving {
+  color: rgba(245, 158, 11, 0.95);
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
+}
+
+/* Ramp gate selection popup buttons (Leaflet popup HTML) */
+
+.ramp-popup-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ramp-popup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  border: 1px solid rgba(255,255,255,0.14);
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.40);
+  user-select: none;
+}
+
+.ramp-popup-btn:active {
+  transform: translateY(1px);
+}
+
+.ramp-popup-btn-reserve {
+  background: rgba(245, 158, 11, 0.95);
+  border-color: rgba(252, 211, 77, 0.90);
+  color: rgba(11, 15, 16, 0.95);
+  text-shadow: none;
+}
+
+.ramp-popup-btn-reserve:hover {
+  filter: brightness(1.08);
+}
+
+.ramp-popup-btn-assign {
+  background: rgba(16, 185, 129, 0.28);
+  border-color: rgba(16, 185, 129, 0.65);
+  color: rgba(236, 253, 245, 0.98);
+}
+
+.ramp-popup-btn-assign:hover {
+  background: rgba(16, 185, 129, 0.36);
+}
+
+/* ---------- Lesson plan rich text (restore list bullets) ---------- */
+.lesson-richtext,
+.lesson-richtext * {
+  /* Some existing lesson plan HTML includes inline colors (often black).
+     Force readable text in the dark UI. Print overrides this in @media print. */
+  color: rgba(255,255,255,0.88) !important;
+}
+
+.lesson-richtext ul,
+.lesson-richtext ol {
+  margin: 0.4rem 0;
+  padding-left: 1.25rem; /* indentation for markers */
+}
+
+.lesson-richtext ul { list-style: disc; }
+.lesson-richtext ol { list-style: decimal; }
+
+.lesson-richtext li {
+  margin: 0.15rem 0;
+}
+
+.lesson-richtext p {
+  margin: 0.4rem 0;
+}
+
+.lesson-richtext a {
+  text-decoration: underline;
+}
+
+/* ---------- Simple WYSIWYG editor (admin lesson plan) ---------- */
+.rte-editor:empty:before {
+  content: attr(data-placeholder);
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.rte-editor ul,
+.rte-editor ol {
+  margin: 0.35rem 0;
+  padding-left: 1.25rem;
+}
+
+.rte-editor ul { list-style: disc; }
+.rte-editor ol { list-style: decimal; }
+
+.rte-editor li {
+  margin: 0.12rem 0;
+}
+
+.rte-editor a {
+  text-decoration: underline;
+}
+
+/* ---------- Print styling (lesson plans + general) ---------- */
+
+@media print {
+  :root { color-scheme: light; }
+
+  /* Nuke the dark background + heavy effects for print */
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Lesson plan rich text should print in black with visible list markers. */
+  .lesson-richtext,
+  .lesson-richtext * {
+    color: #000 !important;
+  }
+
+  .lesson-richtext ul { list-style: disc !important; padding-left: 1.25rem !important; }
+  .lesson-richtext ol { list-style: decimal !important; padding-left: 1.25rem !important; }
+
+  /* Hide nav + interactive UI */
+  header,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Remove the default top padding used to clear the fixed navbar */
+  .pt-20 { padding-top: 0 !important; }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+
+  .ui-card,
+  .ui-panel {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #d0d0d0 !important;
+    box-shadow: none !important;
+  }
+
+  .ui-badge {
+    background: #f2f2f2 !important;
+    color: #000 !important;
+    border-color: #c9c9c9 !important;
+  }
+
+  /* Keep lesson sections from splitting awkwardly */
+  .lesson-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Print in a single column to avoid cramped two-col sections */
+  .lesson-two-col {
+    grid-template-columns: 1fr !important;
+  }
+}

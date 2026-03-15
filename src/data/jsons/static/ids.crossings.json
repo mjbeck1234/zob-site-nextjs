@@ -1,0 +1,2101 @@
+[{
+  "destination": "FWA",
+  "bdry_fix": "30 DME of FWA VORTAC",
+  "restriction": 11000,
+  "notes": "If through ZAU",
+  "artcc": "ZAU"
+},
+{
+  "destination": "GRR",
+  "bdry_fix": "",
+  "restriction": "FL190 descending 11000 ",
+  "notes": "ZAU E area (else through APP control) ",
+  "artcc": "ZAU"
+},
+{
+  "destination": "GYY",
+  "restriction": "FL220-",
+  "notes": "ZAU east area (BAGEL GSH GSH#) ",
+  "artcc": "ZAU",
+  "bdry_fix": null
+},
+{
+  "destination": "IGQ",
+  "restriction": "FL220-",
+  "notes": "ZAU east area (BAGEL GSH GSH#) ",
+  "artcc": "ZAU",
+  "bdry_fix": null
+},
+{
+  "destination": "ORD",
+  "bdry_fix": "KAYYS",
+  "restriction": "FL320-",
+  "notes": "via ECK sector (WYNDE#) ",
+  "artcc": "ZAU"
+},
+{
+  "destination": "ORD",
+  "restriction": "FL340-",
+  "notes": "ZAU SE (join WATSN# by WATSN)",
+  "artcc": "ZAU",
+  "bdry_fix": null
+},
+{
+  "destination": "BDL",
+  "bdry_fix": "",
+  "restriction": "FL350-",
+  "artcc": "ZBW",
+  "notes": "All (AUDIL STELA# or MEMMS WILET STELA#) "
+},
+{
+  "destination": "EWR",
+  "bdry_fix": "",
+  "restriction": "FL270-",
+  "notes": "RNAV, through ZBW (FLOSI#) ",
+  "artcc": "ZBW"
+},
+{
+  "destination": "DCA",
+  "bdry_fix": "BUCKO",
+  "restriction": "FL310-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (FRDMM#), non-RNAV Jets (NUMMY#) "
+},
+{
+  "destination": "BWI",
+  "bdry_fix": "LUNDY",
+  "restriction": "FL290-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ANTHM#) "
+},
+{
+  "destination": "SYR",
+  "bdry_fix": "30 DME of SYR",
+  "restriction": 11000,
+  "notes": "dct SYR or SYR-250 to SYR-270",
+  "artcc": "ZBW"
+},
+{
+  "destination": "ALB",
+  "restriction": "FL290-",
+  "artcc": "ZBW",
+  "bdry_fix": null,
+  "notes": null
+},
+{
+  "destination": "BDR",
+  "restriction": "FL330-",
+  "artcc": "ZBW",
+  "bdry_fix": null,
+  "notes": "All (RKA BDR#) "
+},
+{
+  "destination": "HVN",
+  "restriction": "FL330-",
+  "artcc": "ZBW",
+  "bdry_fix": null,
+  "notes": "All (RKA BDR#) "
+},
+{
+  "destination": "OXC",
+  "restriction": "FL330-",
+  "artcc": "ZBW",
+  "bdry_fix": null,
+  "notes": "All (RKA BDR#) "
+},
+{
+  "destination": "GTB",
+  "restriction": "FL190 descending 11000",
+  "artcc": "ZBW",
+  "bdry_fix": null,
+  "notes": "SYR DCT"
+},
+{
+  "destination": "HPN",
+  "restriction": "FL330-",
+  "artcc": "ZBW",
+  "bdry_fix": null,
+  "notes": "ITH DNY VALRE#"
+},
+{
+  "destination": "DXR",
+  "restriction": "FL330",
+  "artcc": "ZBW"
+},
+{
+  "destination": "POU",
+  "restriction": "FL330",
+  "artcc": "ZBW"
+},
+{
+  "destination": "MSV",
+  "restriction": "FL330",
+  "artcc": "ZBW"
+},
+{
+  "destination": "MDW",
+  "restriction": "FL300-",
+  "notes": "ZAU SE area (BAGEL PANGG#) ",
+  "artcc": "ZAU",
+  "bdry_fix": "ASHEN"
+},
+{
+  "destination": "MDW",
+  "restriction": "FL220- ",
+  "notes": "ZAU east area (ZEGBI LEROY BAGEL PANGG#) ",
+  "artcc": "ZAU",
+  "bdry_fix": null
+},
+{
+  "destination": "IND",
+  "restriction": "FL280-",
+  "notes": "Through ZAU, RNAV (SJAAY SNKPT#) ",
+  "artcc": "ZAU",
+  "bdry_fix": null
+},
+{
+  "destination": "RFD",
+  "restriction": "FL340-",
+  "artcc": "ZAU",
+  "bdry_fix": null,
+  "notes": "North of J70 (WEBOR HIGUH EMMAS#) "
+},
+{
+  "destination": "ASW",
+  "bdry_fix": null,
+  "restriction": "16000-",
+  "notes": "",
+  "artcc": "ZAU"
+},
+{
+  "destination": "AZO",
+  "bdry_fix": null,
+  "restriction": "FL220-",
+  "notes": "ZAU SE area",
+  "artcc": "ZAU"
+},
+{
+  "destination": "GYY",
+  "bdry_fix": null,
+  "restriction": "FL280-",
+  "notes": "ZAU SE area (BAGEL GSH GSH#) ",
+  "artcc": "ZAU"
+},
+{
+  "destination": "MKE",
+  "bdry_fix": null,
+  "restriction": "Route Only (GETCH LYSTR SUDDS) ",
+  "notes": "ZAU ctl for dct GETCH FL240+ ",
+  "artcc": "ZAU"
+},
+{
+  "destination": "IGQ",
+  "bdry_fix": null,
+  "restriction": "FL280- ",
+  "notes": "ZAU SE area (BAGEL GSH GSH#) ",
+  "artcc": "ZAU"
+},
+{
+  "destination": "ENW ",
+  "bdry_fix": null,
+  "restriction": "FL320-",
+  "notes": "E/SE area (PMM/SMUUV ZEMEL EXARR) ",
+  "artcc": "ZAU"
+},
+{
+  "destination": "RAC",
+  "bdry_fix": null,
+  "restriction": "FL320-",
+  "notes": "ZAU E/SE area (PMM/SMUUV ZEMEL EXARR)",
+  "artcc": "ZAU"
+},
+{
+  "destination": "UGN",
+  "bdry_fix": null,
+  "restriction": "FL320-",
+  "notes": "ZAU E/SE area (PMM/SMUUV ZEMEL EXARR)",
+  "artcc": "ZAU"
+},
+{
+  "destination": "MSP",
+  "bdry_fix": null,
+  "restriction": "Route only (KAMMA KKILR# if through ZAU) ",
+  "notes": "Able direct KAMMA",
+  "artcc": "ZAU"
+},
+{
+  "destination": "RFD",
+  "bdry_fix": null,
+  "restriction": "Route only (CPONE QUOTE#)",
+  "notes": "South of J70",
+  "artcc": "ZAU"
+},
+{
+  "destination": "SBN",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "E/SE areas - ZAU ctl for desc"
+},
+{
+  "destination": "BEH",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "E/SE areas - ZAU ctl for desc"
+},
+{
+  "destination": "EKM",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "E/SE areas - ZAU ctl for desc"
+},
+{
+  "destination": "GSH",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "E/SE areas - ZAU ctl for desc"
+},
+{
+  "destination": "VPZ",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "E/SE areas - ZAU ctl for desc"
+},
+{
+  "destination": "MGC",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "E/SE areas - ZAU ctl for desc"
+},
+{
+  "destination": "35D",
+  "restriction": "FL220-",
+  "artcc": "ZAU"
+},
+{
+  "destination": "GWB",
+  "restriction": "FL220-",
+  "artcc": "ZAU"
+},
+{
+  "destination": "FFX",
+  "restriction": "FL220-",
+  "artcc": "ZAU"
+},
+{
+  "destination": "3GM",
+  "restriction": "FL220-",
+  "artcc": "ZAU"
+},
+{
+  "destination": "HLM",
+  "restriction": "FL220-",
+  "artcc": "ZAU"
+},
+{
+  "destination": "MKG",
+  "restriction": "FL220-",
+  "artcc": "ZAU"
+},
+{
+  "destination": "LWA",
+  "restriction": "FL220-",
+  "artcc": "ZAU"
+},
+{
+  "destination": "BIV",
+  "restriction": "FL220-",
+  "artcc": "ZAU"
+},
+{
+  "destination": "IND",
+  "bdry_fix": null,
+  "restriction": "FL220-",
+  "notes": "Through ZAU, non-RNAV (FWA CLANG#) ",
+  "artcc": "ZAU"
+},
+{
+  "destination": "BED",
+  "bdry_fix": null,
+  "restriction": "Route only (EEGUL ZELKA#) ",
+  "notes": "",
+  "artcc": "ZBW"
+},
+{
+  "destination": "BOS",
+  "bdry_fix": null,
+  "restriction": "Route only (PONCT JFUND#) ",
+  "notes": "RNAV Jet, Able direct PONCT",
+  "artcc": "ZBW"
+},
+{
+  "destination": "BOS",
+  "bdry_fix": null,
+  "restriction": "Route only (ALB GDM#) ",
+  "notes": "Non-RNAV Jet or Non-Jet",
+  "artcc": "ZBW"
+},
+{
+  "destination": "JFK",
+  "bdry_fix": null,
+  "restriction": "Route only (IGN#)",
+  "notes": "Through ZBW",
+  "artcc": "ZBW"
+},
+{
+  "destination": "LGA",
+  "bdry_fix": null,
+  "restriction": "Route only (ALB/RKA HAARP#) ",
+  "notes": "Through ZBW",
+  "artcc": "ZBW"
+},
+{
+  "destination": "MHT",
+  "bdry_fix": null,
+  "restriction": "Route only (PONCT ROZZE#) ",
+  "notes": "",
+  "artcc": "ZBW"
+},
+{
+  "destination": "RME",
+  "bdry_fix": null,
+  "restriction": "Descending to 17000- ",
+  "notes": "North of Q935",
+  "artcc": "ZBW"
+},
+{
+  "destination": "PWK",
+  "restriction": "FL300-",
+  "artcc": "ZAU",
+  "notes": "Jets (PMM/SMUUV FIYER OBK)"
+},
+{
+  "destination": "PWK",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "Props (ELX V100 DEERE)"
+},
+{
+  "destination": "C81",
+  "restriction": "FL300-",
+  "artcc": "ZAU",
+  "notes": "Jets (PMM/SMUUV FIYER OBK)"
+},
+{
+  "destination": "C81",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "Props (ELX V100 DEERE)"
+},
+{
+  "destination": "3CK",
+  "restriction": "FL300-",
+  "artcc": "ZAU",
+  "notes": "Jets (PMM/SMUUV FIYER OBK)"
+},
+{
+  "destination": "3CK",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "Props (ELX V100 DEERE)"
+},
+{
+  "destination": "10C",
+  "restriction": "FL300-",
+  "artcc": "ZAU",
+  "notes": "Jets (PMM/SMUUV FIYER OBK)"
+},
+{
+  "destination": "10C",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "Props (ELX V100 DEERE)"
+},
+{
+  "destination": "ARR",
+  "restriction": "FL300-",
+  "artcc": "ZAU",
+  "notes": "Jets (PMM/SMUUV FIYER OBK)"
+},
+{
+  "destination": "ARR",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "Props (ELX V100 DEERE)"
+},
+{
+  "destination": "DPA",
+  "restriction": "FL300-",
+  "artcc": "ZAU",
+  "notes": "Jets (PMM/SMUUV FIYER OBK) ",
+  "bdry_fix": null
+},
+{
+  "destination": "DPA",
+  "restriction": "FL220-",
+  "artcc": "ZAU",
+  "notes": "Props (ELX V100 DEERE)"
+},
+{
+  "destination": "LOT",
+  "restriction": "FL320-",
+  "artcc": "ZAU",
+  "notes": "All (KLROY EON JOT) "
+},
+{
+  "destination": "SWF",
+  "restriction": "FL270-",
+  "artcc": "ZBW",
+  "notes": "All (ITH DNY V483 FILPS) "
+},
+{
+  "destination": "POU",
+  "restriction": "FL270-",
+  "artcc": "ZBW",
+  "notes": "All (ITH DNY V483 FILPS) "
+},
+{
+  "destination": "MSV",
+  "restriction": "FL270-",
+  "artcc": "ZBW",
+  "notes": "All (ITH DNY V483 FILPS) "
+},
+{
+  "destination": "DCA",
+  "bdry_fix": null,
+  "restriction": "FL210-",
+  "notes": "RNAV props (ESL TIKEE#), non-RNAV props (ESL TTUMS CSN) ",
+  "artcc": "ZDC"
+},
+{
+  "destination": "BWI",
+  "bdry_fix": "LUNDY",
+  "restriction": "FL250-",
+  "notes": "non-RNAV Jets (EMI#) ",
+  "artcc": "ZDC"
+},
+{
+  "destination": "BWI",
+  "bdry_fix": null,
+  "restriction": "17000-",
+  "notes": "Props (MRB EMI) ",
+  "artcc": "ZDC"
+},
+{
+  "destination": "DAA",
+  "bdry_fix": "BUCKO",
+  "restriction": "FL310-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (FRDMM#)"
+},
+{
+  "destination": "DAA",
+  "bdry_fix": "BUCKO",
+  "restriction": "FL310-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV Jets (NUMMY#)"
+},
+{
+  "destination": "DAA",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV Props (ESL TIKEE#)"
+},
+{
+  "destination": "DAA",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV Props (ESL TTUMS CSN)"
+},
+{
+  "destination": "ADW",
+  "bdry_fix": "BUCKO",
+  "restriction": "FL310-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (FRDMM#)"
+},
+{
+  "destination": "ADW",
+  "bdry_fix": "BUCKO",
+  "restriction": "FL310-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV Jets (NUMMY#)"
+},
+{
+  "destination": "ADW",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV Props (ESL TIKEE#)"
+},
+{
+  "destination": "ADW",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV Props (ESL TTUMS CSN)"
+},
+{
+  "destination": "MTN",
+  "bdry_fix": "LUNDY",
+  "restriction": "FL290-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ANTHM#)"
+},
+{
+  "destination": "MTN",
+  "bdry_fix": "LUNDY",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV Jets (EMI#)"
+},
+{
+  "destination": "MTN",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "Props (MRB EMI)"
+},
+{
+  "destination": "9W8",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "W29",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "2W2",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "W50",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "ESN",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "W48",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "W42",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "6W6",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "0W3",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "FME",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "MD95",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "3W3",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "ANP",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "APG",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "W18",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "EDG",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "DMW",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "GAI",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "RJD",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "1W5",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "MD43",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "All (MRB EMI)"
+},
+{
+  "destination": "IAD",
+  "bdry_fix": "BRNDN",
+  "restriction": "FL270-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (GIBBZ#). Able dct JIMVE FL240-. "
+},
+{
+  "destination": "IAD",
+  "bdry_fix": "25NM NW ESL",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV Jets (ESL FINKS DOCCS)"
+},
+{
+  "destination": "IAD",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "Props (MRB AML) "
+},
+{
+  "destination": "JYO",
+  "bdry_fix": "BRNDN",
+  "restriction": "FL270-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (GIBBZ#). Able dct JIMVE FL240-. "
+},
+{
+  "destination": "JYO",
+  "bdry_fix": "25NM NW ESL",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV Jets (ESL FINKS DOCCS)"
+},
+{
+  "destination": "JYO",
+  "restriction": "17000-",
+  "artcc": "ZDC",
+  "notes": "Props (MRB AML) "
+},
+{
+  "destination": "HEF",
+  "bdry_fix": "BRNDN",
+  "restriction": "FL270-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (GIBBZ#/TIKEE#). Able dct JIMVE FL240-."
+},
+{
+  "destination": "HEF",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV Jets (ESL ESL187 FINKS CSN)"
+},
+{
+  "destination": "HEF",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) "
+},
+{
+  "destination": "HEF",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "CJR",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ESL TIKEE#) + non-RNAV Jets (ESL TTUMS CSN) "
+},
+{
+  "destination": "CJR",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) + non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "HWY",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ESL TIKEE#) + non-RNAV Jets (ESL TTUMS CSN)"
+},
+{
+  "destination": "HWY",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) + non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "RMN",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ESL TIKEE#) + non-RNAV Jets (ESL TTUMS CSN)"
+},
+{
+  "destination": "RMN",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) + non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "EZF",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ESL TIKEE#) + non-RNAV Jets (ESL TTUMS CSN)"
+},
+{
+  "destination": "EZF",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) + non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "NYG",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ESL TIKEE#) + non-RNAV Jets (ESL TTUMS CSN)"
+},
+{
+  "destination": "NYG",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) + non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "W00",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ESL TIKEE#) + non-RNAV Jets (ESL TTUMS CSN)"
+},
+{
+  "destination": "W00",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) + non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "VKX",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ESL TIKEE#) + non-RNAV Jets (ESL TTUMS CSN)"
+},
+{
+  "destination": "VKX",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) + non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "2W5",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (ESL TIKEE#) + non-RNAV Jets (ESL TTUMS CSN)"
+},
+{
+  "destination": "2W5",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "RNAV props (ESL TIKEE#) + non-RNAV props (ESL TTUMS CSN)"
+},
+{
+  "destination": "DOV",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV / must be below BWI (LUNDY ARLFT#)"
+},
+{
+  "destination": "DOV",
+  "restriction": "FL290-",
+  "artcc": "ZDC",
+  "notes": "RNAV unable STAR / must be below BWI (MRB WOOLY SWANN) "
+},
+{
+  "destination": "33N",
+  "restriction": "FL250-",
+  "artcc": "ZDC",
+  "notes": "RNAV / must be below BWI (LUNDY ARLFT#)"
+},
+{
+  "destination": "33N",
+  "restriction": "FL290-",
+  "artcc": "ZDC",
+  "notes": "RNAV unable STAR / must be below BWI (MRB WOOLY SWANN) "
+},
+{
+  "destination": "RIC",
+  "restriction": "FL290-",
+  "artcc": "ZDC",
+  "notes": "RNAV Jets (MOL SPIDR#)"
+},
+{
+  "destination": "FCI",
+  "restriction": "FL290-",
+  "artcc": "ZDC",
+  "notes": "All (MOL FAK) "
+},
+{
+  "destination": "ORF",
+  "restriction": "Route only (MOL TERKS#)",
+  "artcc": "ZDC",
+  "notes": "Enter ZDC no further east than line MGW-MOL"
+},
+{
+  "destination": "NGC",
+  "restriction": "Route only (MOL TERKS#)",
+  "artcc": "ZDC",
+  "notes": "Enter ZDC no further east than line MGW-MOL"
+},
+{
+  "destination": "NTU",
+  "restriction": "Route only (MOL TERKS#)",
+  "artcc": "ZDC",
+  "notes": "Enter ZDC no further east than line MGW-MOL"
+},
+{
+  "destination": "LFI",
+  "restriction": "Route only (MOL TERKS#)",
+  "artcc": "ZDC",
+  "notes": "Enter ZDC no further east than line MGW-MOL"
+},
+{
+  "destination": "PHF",
+  "restriction": "Route only (MOL TERKS#)",
+  "artcc": "ZDC",
+  "notes": "Enter ZDC no further east than line MGW-MOL"
+},
+{
+  "destination": "RDU",
+  "restriction": "FL330-",
+  "artcc": "ZDC",
+  "notes": "Jets (TIVAE ALDAN#)"
+},
+{
+  "destination": "GSO",
+  "restriction": "FL290-",
+  "artcc": "ZDC",
+  "notes": "Jets (ROA HENBY#) "
+},
+{
+  "destination": "GED",
+  "restriction": "FL270-",
+  "artcc": "ZDC",
+  "notes": "Jets/Turboprops (MRB WOOLY BAL) "
+},
+{
+  "destination": "GED",
+  "restriction": "FL210-",
+  "artcc": "ZDC",
+  "notes": "Props (CPTAL T358 OBWON)"
+},
+{
+  "destination": "CMH",
+  "restriction": "10000-",
+  "artcc": "ZID",
+  "notes": "HO to CMH TRACON (CBUSS# or GUNNE or FBC DUBLN#) "
+},
+{
+  "destination": "CMH",
+  "restriction": "Fl230 descending 16000",
+  "artcc": "ZID",
+  "notes": "All (AIR/ZANDR CLPRR#) "
+},
+{
+  "destination": "CMH",
+  "restriction": "14000-",
+  "artcc": "ZID",
+  "notes": "All (TVTRN) "
+},
+{
+  "destination": "CVG",
+  "restriction": "FL320-",
+  "artcc": "ZID",
+  "notes": "All (UKATS TIGRR# or UKATS BOWRR HEDEE JARGO TIGRR) "
+},
+{
+  "destination": "CVG",
+  "restriction": "FL200-",
+  "artcc": "ZID",
+  "notes": "Normally D21 (DEBAR ARBAS RID MEEKR) "
+},
+{
+  "destination": "HAO",
+  "restriction": "FL320-",
+  "artcc": "ZID",
+  "notes": "All (UKATS BOWRR HEDEE MXQ)"
+},
+{
+  "destination": "HAO",
+  "restriction": "FL230-",
+  "artcc": "ZID",
+  "notes": "All (RINTE HEDEE MXQ)"
+},
+{
+  "destination": "LUK",
+  "restriction": "FL320-",
+  "artcc": "ZID",
+  "notes": "All (UKATS BOWRR HEDEE MXQ)"
+},
+{
+  "destination": "LUK",
+  "restriction": "FL230-",
+  "artcc": "ZID",
+  "notes": "All (RINTE HEDEE MXQ)"
+},
+{
+  "destination": "I69",
+  "restriction": "FL320-",
+  "artcc": "ZID",
+  "notes": "All (UKATS BOWRR HEDEE MXQ)"
+},
+{
+  "destination": "I69",
+  "restriction": "FL230-",
+  "artcc": "ZID",
+  "notes": "All (RINTE HEDEE MXQ)"
+},
+{
+  "destination": "DAY",
+  "restriction": "FL280-",
+  "artcc": "ZID",
+  "notes": "All (APE DANEI#) "
+},
+{
+  "destination": "DAY",
+  "restriction": "14000-",
+  "artcc": "ZID",
+  "notes": "AIT (TVTRN) "
+},
+{
+  "destination": "FFO",
+  "restriction": "FL280-",
+  "artcc": "ZID",
+  "notes": "All (APE DANEI#) "
+},
+{
+  "destination": "FFO",
+  "restriction": "14000-",
+  "artcc": "ZID",
+  "notes": "AIT (TVTRN) "
+},
+{
+  "destination": "MGY",
+  "restriction": "FL280-",
+  "artcc": "ZID",
+  "notes": "All (APE DANEI#) "
+},
+{
+  "destination": "MGY",
+  "restriction": "14000-",
+  "artcc": "ZID",
+  "notes": "AIT (TVTRN) "
+},
+{
+  "destination": "ILN",
+  "restriction": "FL280-",
+  "artcc": "ZID",
+  "notes": "All (APE COOJO DANEI) "
+},
+{
+  "destination": "ILN",
+  "restriction": "FL200-",
+  "artcc": "ZID",
+  "notes": "Others "
+},
+{
+  "destination": "IND",
+  "restriction": "FL220-",
+  "artcc": "ZID",
+  "notes": "RNAV (TORRR/SINKR SNKPT SNKPT#) "
+},
+{
+  "destination": "IND",
+  "restriction": "FL220-",
+  "artcc": "ZID",
+  "notes": "non-RNAV (TORRR/SINKR MIE CLANG#) "
+},
+{
+  "destination": "PKB",
+  "restriction": "Descending to 6000",
+  "artcc": "ZID",
+  "notes": "ZID ctl for desc / turn 30R"
+},
+{
+  "destination": "RDU",
+  "restriction": "FL290-",
+  "artcc": "ZID",
+  "notes": "East of JPU"
+},
+{
+  "destination": "ROA",
+  "restriction": "FL250-",
+  "artcc": "ZID",
+  "notes": "East of JPU"
+},
+{
+  "destination": "SDF",
+  "restriction": "Route only (UKATS/RINTE DLAMP# or RINTE/UKATS ZIDHI ANCHR DLAMP)",
+  "artcc": "ZID",
+  "notes": "Able dct RINTE/UKATS"
+},
+{
+  "destination": "LOU",
+  "restriction": "Route only (UKATS/RINTE DLAMP# or RINTE/UKATS ZIDHI ANCHR DLAMP)",
+  "artcc": "ZID",
+  "notes": "Able dct RINTE/UKATS"
+},
+{
+  "destination": "ACB",
+  "restriction": "FL280- P/D FL240",
+  "artcc": "ZMP"
+},
+{
+  "destination": "GLR",
+  "restriction": "FL280- P/D FL240",
+  "artcc": "ZMP"
+},
+{
+  "destination": "TVC",
+  "restriction": "FL280- P/D FL240",
+  "artcc": "ZMP"
+},
+{
+  "destination": "APN",
+  "restriction": "FL230- P/D 11000",
+  "artcc": "ZMP"
+},
+{
+  "destination": "CAD",
+  "restriction": "FL280- P/D FL240",
+  "artcc": "ZMP"
+},
+{
+  "destination": "OSC",
+  "restriction": "FL280- P/D FL240",
+  "artcc": "ZMP"
+},
+{
+  "destination": "ACY",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL arrivals (HAR DQO V29 ENO SIE)"
+},
+{
+  "destination": "ACY",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Turboprops (HAR DQO V29 ENO SIE) "
+},
+{
+  "destination": "ABE",
+  "bdry_fix": "ETG",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets"
+},
+{
+  "destination": "ABE",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets via MDT sector (HAR V162 DUMMR) "
+},
+{
+  "destination": "ALB",
+  "restriction": "FL290-",
+  "artcc": "ZNY",
+  "notes": "North of J584"
+},
+{
+  "destination": "AVP",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets south of J584"
+},
+{
+  "destination": "AVP",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "North of J584"
+},
+{
+  "destination": "BDR",
+  "restriction": "FL330 descending FL290-",
+  "artcc": "ZNY",
+  "notes": "Jets north of J190 (RKA BDR#) "
+},
+{
+  "destination": "BDR",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets via MIP sector (RKA BDR#) "
+},
+{
+  "destination": "BDR",
+  "restriction": "FL390-",
+  "artcc": "ZNY",
+  "notes": "Jets via PSB/SEG sectors (RKA BDR#) "
+},
+{
+  "destination": "HVN",
+  "restriction": "FL330 descending FL290-",
+  "artcc": "ZNY",
+  "notes": "Jets north of J190 (RKA BDR#) "
+},
+{
+  "destination": "HVN",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets via MIP sector (RKA BDR#) "
+},
+{
+  "destination": "HVN",
+  "restriction": "FL390-",
+  "artcc": "ZNY",
+  "notes": "Jets via PSB/SEG sectors (RKA BDR#) "
+},
+{
+  "destination": "OXC",
+  "restriction": "FL330 descending FL290-",
+  "artcc": "ZNY",
+  "notes": "Jets north of J190 (RKA BDR#) "
+},
+{
+  "destination": "OXC",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets via MIP sector (RKA BDR#) "
+},
+{
+  "destination": "OXC",
+  "restriction": "FL390-",
+  "artcc": "ZNY",
+  "notes": "Jets via PSB/SEG sectors (RKA BDR#) "
+},
+{
+  "destination": "BGM",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "North of J70"
+},
+{
+  "destination": "BGM",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "On or south of J70"
+},
+{
+  "destination": "ITH",
+  "restriction": "17000 descending 9000ft",
+  "artcc": "ZNY"
+},
+{
+  "destination": "ITH",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of J70"
+},
+{
+  "destination": "ELM",
+  "restriction": "17000 descending 9000ft",
+  "artcc": "ZNY",
+  "notes": "North of J70"
+},
+{
+  "destination": "ELM",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of J70"
+},
+{
+  "destination": "BWI",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below EWR arrs. (IZZEE TRISH#) "
+},
+{
+  "destination": "DCA",
+  "bdry_fix": "PSB",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SKILS#)"
+},
+{
+  "destination": "DAA",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SHILO V93 BAL) "
+},
+{
+  "destination": "2W5",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SHILO V93 BAL) "
+},
+{
+  "destination": "ADW",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SHILO V93 BAL) "
+},
+{
+  "destination": "CGS",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SHILO V93 BAL) "
+},
+{
+  "destination": "NDY",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SHILO V93 BAL) "
+},
+{
+  "destination": "VKX",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SHILO V93 BAL) "
+},
+{
+  "destination": "W00",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SHILO V93 BAL)"
+},
+{
+  "destination": "W32",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - above PHL and IAD arrs. (PSB SHILO V93 BAL)"
+},
+{
+  "destination": "EWR",
+  "restriction": "FL330-",
+  "artcc": "ZNY",
+  "notes": "Jets (SLT FQM#) "
+},
+{
+  "destination": "EWR",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Props (FQM PENNS#) "
+},
+{
+  "destination": "TEB",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "TEB",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "TEB",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "TEB",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "12N",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "12N",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "12N",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "12N",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "1N7",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "1N7",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "1N7",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "1N7",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "39N",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "39N",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "39N",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "39N",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "4N1",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "4N1",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "4N1",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "4N1",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "CDW",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "CDW",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "CDW",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "CDW",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "FWN",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "FWN",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "FWN",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "FWN",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "LDJ",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "LDJ",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "LDJ",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "LDJ",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "MMU",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "MMU",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "MMU",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "MMU",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "SMQ",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "SMQ",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "SMQ",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "SMQ",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "N05",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "N05",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "N05",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "N05",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "N07",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "N07",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "N07",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "N07",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "N51",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets (J70 LVZ LVZ#) "
+},
+{
+  "destination": "N51",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ (J70 LVZ LVZ#) "
+},
+{
+  "destination": "N51",
+  "restriction": "FL350-",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT (PSB MAGIO LVZ LVZ#) "
+},
+{
+  "destination": "N51",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "South of SLT / unable LVZ# (PENNS STW)"
+},
+{
+  "destination": "HPN",
+  "restriction": "FL290-",
+  "artcc": "ZNY",
+  "notes": "East of PIT / 250kt+ (DNY VALRE#) "
+},
+{
+  "destination": "HPN",
+  "restriction": "FL290-",
+  "artcc": "ZNY",
+  "notes": "East of PIT / non-jet / 250kt- (DNY NOBBI#) "
+},
+{
+  "destination": "IAD",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "IAD",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "IAD",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "CJR",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "CJR",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "CJR",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "EZF",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "EZF",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "EZF",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "FRR",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "FRR",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "FRR",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#)"
+},
+{
+  "destination": "HEF",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "HEF",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "HEF",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "HWY",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "HWY",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "HWY",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "JYO",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "JYO",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "JYO",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "MRB",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "MRB",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "MRB",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "NYG",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "NYG",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "NYG",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "OKV",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "OKV",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "OKV",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#)"
+},
+{
+  "destination": "RMN",
+  "restriction": "FL300-",
+  "artcc": "ZNY",
+  "notes": "Jets north of GEE sec. southern boundary (J59 PSB PRIVO#) "
+},
+{
+  "destination": "RMN",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - below PHL and DCA arrs (PSB PRIVO#) "
+},
+{
+  "destination": "RMN",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (SEG SEG#) "
+},
+{
+  "destination": "IPT",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "SWISS sector"
+},
+{
+  "destination": "ISP",
+  "restriction": "Route only (HNK NELIE#)",
+  "artcc": "ZNY"
+},
+{
+  "destination": "1N2",
+  "restriction": "Route only (HNK NELIE#)",
+  "artcc": "ZNY"
+},
+{
+  "destination": "21N",
+  "restriction": "Route only (HNK NELIE#)",
+  "artcc": "ZNY"
+},
+{
+  "destination": "FOK",
+  "restriction": "Route only (HNK NELIE#)",
+  "artcc": "ZNY"
+},
+{
+  "destination": "HWV",
+  "restriction": "Route only (HNK NELIE#)",
+  "artcc": "ZNY"
+},
+{
+  "destination": "HTO",
+  "restriction": "Route only (HNK NELIE#)",
+  "artcc": "ZNY"
+},
+{
+  "destination": "MTP",
+  "restriction": "Route only (HNK NELIE#)",
+  "artcc": "ZNY"
+},
+{
+  "destination": "JFK",
+  "restriction": "Route only (HOXIE J70 LVZ LENDY#)",
+  "artcc": "ZNY",
+  "notes": "Jets"
+},
+{
+  "destination": "JFK",
+  "restriction": "Route only (HOXIE J70 LVZ LENDY#)",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ "
+},
+{
+  "destination": "JFK",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt- (PSB V6 FJC ARD V276 ZIGGI#)"
+},
+{
+  "destination": "JFK",
+  "restriction": "Route only (PSB MAGIO LVZ LENDY#)",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT"
+},
+{
+  "destination": "FRG",
+  "restriction": "Route only (HOXIE J70 LVZ LENDY#)",
+  "artcc": "ZNY",
+  "notes": "Jets"
+},
+{
+  "destination": "FRG",
+  "restriction": "Route only (HOXIE J70 LVZ LENDY#)",
+  "artcc": "ZNY",
+  "notes": "Props 250kt+ "
+},
+{
+  "destination": "FRG",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props 250kt- (PSB V6 FJC ARD V276 ZIGGI#)"
+},
+{
+  "destination": "FRG",
+  "restriction": "Route only (PSB MAGIO LVZ LENDY#)",
+  "artcc": "ZNY",
+  "notes": "Jets east of PIT"
+},
+{
+  "destination": "LGA",
+  "restriction": "FL330-",
+  "artcc": "ZNY",
+  "notes": "Jets (ETG/PSB/MIP MIP#) "
+},
+{
+  "destination": "LGA",
+  "restriction": "FL290-",
+  "artcc": "ZNY",
+  "notes": "Jets from PIT (ETG/PSB/MIP MIP#)"
+},
+{
+  "destination": "MDT",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "SWISS sector"
+},
+{
+  "destination": "MDT",
+  "restriction": "17000 descending 11000ft",
+  "artcc": "ZNY",
+  "notes": "MDT sector"
+},
+{
+  "destination": "PHL",
+  "bdry_fix": "COFAX",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "MDT sector (HAR/PSB/JST BUNTS#/BOJID#) "
+},
+{
+  "destination": "PHL",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props (HAR V210 BUNTS) "
+},
+{
+  "destination": "RDG",
+  "restriction": "FL250-",
+  "artcc": "ZNY",
+  "notes": "Jets - MIP sector (RAV) "
+},
+{
+  "destination": "RDG",
+  "restriction": "FL190-",
+  "artcc": "ZNY",
+  "notes": "All - PSB sector (RAV) "
+},
+{
+  "destination": "RDG",
+  "restriction": "FL190-",
+  "artcc": "ZNY",
+  "notes": "Jets - MDT sector (HAR BOYER) "
+},
+{
+  "destination": "RDG",
+  "restriction": "17000-",
+  "artcc": "ZNY",
+  "notes": "Props - MDT sector (HAR BOYER) "
+},
+{
+  "destination": "SWF",
+  "restriction": "FL230-",
+  "artcc": "ZNY",
+  "notes": "All (HNK DNY V483 FILPS) "
+},
+{
+  "destination": "SYR",
+  "restriction": "FL270-",
+  "artcc": "ZNY",
+  "notes": "All (PSB) "
+},
+{
+  "destination": "YYZ",
+  "restriction": "FL210-",
+  "artcc": "ZYZ",
+  "notes": "From FNT sector and D21 / Jets (APDAX NUBER#) / Props (APDAX NAKBO#) "
+},
+{
+  "destination": "YYZ",
+  "restriction": "FL190-",
+  "artcc": "ZYZ",
+  "notes": "From DRE sector / Jets (FINGL NUBER#) / Props (FINGL NAKBO#)"
+},
+{
+  "destination": "YYZ",
+  "restriction": "FL310-",
+  "artcc": "ZYZ",
+  "notes": "Jets from ECK/HUD SECTOR (NUBER#) "
+},
+{
+  "destination": "YYZ",
+  "bdry_fix": "MYPAL",
+  "restriction": "16000-",
+  "artcc": "ZYZ",
+  "notes": "Jets (OXMAN LINNG#) "
+},
+{
+  "destination": "YYZ",
+  "bdry_fix": "WOZEE",
+  "restriction": "14000-",
+  "artcc": "ZYZ",
+  "notes": "Props (WOZEE VERKO#) "
+},
+{
+  "destination": "YYZ",
+  "bdry_fix": "WOZEE",
+  "restriction": "17000-",
+  "artcc": "ZYZ",
+  "notes": "Jets (WOZEE LINNG#) "
+},
+{
+  "destination": "YYZ",
+  "bdry_fix": "OXMAN",
+  "restriction": "15000-",
+  "artcc": "ZYZ",
+  "notes": "Props (WOZEE VERKO#) "
+},
+{
+  "destination": "YTZ",
+  "restriction": "FL190-",
+  "artcc": "ZYZ",
+  "notes": "From FNT sector (DERLO DUROT DCT) "
+},
+{
+  "destination": "YTZ",
+  "restriction": "11000-",
+  "artcc": "ZYZ",
+  "notes": "From the south (GGUCE UDNEM KAXOL or KAXOL#) "
+},
+{
+  "destination": "YTZ",
+  "restriction": "11000-",
+  "artcc": "ZYZ",
+  "notes": "From the east (LINNG DCT) "
+},
+{
+  "destination": "YHM",
+  "restriction": "11000-",
+  "artcc": "ZYZ",
+  "notes": "From the east (DKK DCT or WOZEE COLTS DCT or WOZEE COLTS COLTS#) "
+},
+{
+  "destination": "YHM",
+  "restriction": "11000-",
+  "artcc": "ZYZ",
+  "notes": "Over ERI or from the south (DCT CYHM) "
+},
+{
+  "destination": "YHM",
+  "restriction": "15000-",
+  "artcc": "ZYZ",
+  "notes": "From DRE sector (GGUCE DCT or GGUCE TIKUM TIKUM#) "
+},
+{
+  "destination": "YHM",
+  "bdry_fix": "HOCKE",
+  "restriction": "FL290-",
+  "artcc": "ZYZ",
+  "notes": "RNAV (HOCKE AVSOX AVSOX#) or if unable STAR (HOCKE DCT) "
+},
+{
+  "destination": "YXU",
+  "restriction": "FL210 descending 12000ft",
+  "artcc": "ZYZ",
+  "notes": "From FNT sector (DCT)"
+}]

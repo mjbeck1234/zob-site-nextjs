@@ -1,0 +1,202 @@
+[{
+  "origin": "CLE",
+  "destination": "BDL",
+  "route": "PFLYD1 JASEE JHW Q82 MEMMS WILET STELA1",
+  "altitude": "",
+  "notes": "Hi"
+},
+{
+  "origin": "CLE",
+  "destination": "ORF",
+  "route": "KKIDS1 NUSMM MGW MOL TERKS2"
+},
+{
+  "origin": "CLE",
+  "destination": "CMH",
+  "route": "WWSHR CBUSS2",
+  "notes": "From Cleveland Metro (CLE,CGF,BKL,LNN,LPR)"
+},
+{
+  "origin": "CLE",
+  "destination": "CVG",
+  "route": "CAVVS4 CAVVS UKATS TIGGR4",
+  "altitude": "FL220B",
+  "notes": "From Cleveland Metro (CLE,CGF,BKL,LNN,LPR)"
+},
+{
+  "origin": "CLE",
+  "destination": "IND",
+  "route": "ZAAPA5 SINKR SNKPT SNKPT2",
+  "altitude": "FL220B",
+  "notes": "From Cleveland Metro (CLE,CGF,BKL,LNN,LPR)"
+},
+{
+  "origin": "CLE",
+  "destination": "SDF",
+  "route": "CAVVS4 CAVVS UKATS DLAMP8",
+  "altitude": "FL280B",
+  "notes": "From Cleveland Metro (CLE,CGF,BKL,LNN,LPR)"
+},
+{
+  "origin": "CLE",
+  "destination": "PHL",
+  "route": "KKIDS1 EWC JST BOJID4"
+},
+{
+  "origin": "CLE",
+  "destination": "YYZ",
+  "route": "PFLYD1 PATRC FINGL NUBER6",
+  "altitude": "FL190B"
+},
+{
+  "origin": "CLE",
+  "destination": "DTW",
+  "route": "BONZZ BONZZ2",
+  "notes": "DTW south, From Cleveland Metro (CLE,CGF,BKL,LNN,LPR)"
+},
+{
+  "origin": "CLE",
+  "destination": "DTW",
+  "route": "BONZZ KLYNK3",
+  "notes": "DTW north, From Cleveland Metro (CLE,CGF,BKL,LNN,LPR)"
+},
+{
+  "origin": "BUF",
+  "destination": "ORD",
+  "route": "DAVVK FARGN CHAAP Q436 EMMMA WYNDE2"
+},
+{
+  "origin": "BUF",
+  "destination": "MDW",
+  "route": "JHW DJB J60 ASHEN BAGEL PANGG5"
+},
+{
+  "origin": "BUF",
+  "destination": "MKE",
+  "route": "DERLO Q935 HOCKE GETCH LYSTR SUDDS"
+},
+{
+  "origin": "BUF",
+  "destination": "BDL",
+  "route": "GEE BEEPS WILET STELA1"
+},
+{
+  "origin": "BUF",
+  "destination": "BWI",
+  "route": "VAIRS DDUBS IZZEE TRISH4",
+  "notes": "Through ZNY"
+},
+{
+  "origin": "BUF",
+  "destination": "IAD",
+  "route": "VAIRS PSB WAYNZ1",
+  "notes": "Through ZNY"
+},
+{
+  "origin": "BUF",
+  "destination": "CMH",
+  "route": "JHW WWSHR CBUSS2"
+},
+{
+  "origin": "BUF",
+  "destination": "IND",
+  "route": "JHW DJB RINTE SNKPT2"
+},
+{
+  "origin": "BUF",
+  "destination": "SDF",
+  "route": "JHW UKATS DLAMP8"
+},
+{
+  "origin": "BUF",
+  "destination": "MSP",
+  "route": "DERLO HOCKE IDIOM MUSCL3"
+},
+{
+  "origin": "BUF",
+  "destination": "PHL",
+  "route": "BFD PSB BOJID4"
+},
+{
+  "origin": "BUF",
+  "destination": "YYZ",
+  "route": "WOZEE LINNG3",
+  "altitude": "16000B",
+  "notes": ""
+},
+{
+  "origin": "BUF",
+  "destination": "DTW",
+  "route": "DONEO TPGUN2",
+  "notes": "DTW south",
+  "altitude": ""
+},
+{
+  "origin": "DTW",
+  "destination": "ORD",
+  "route": "KAYLN3 SMUUV WYNDE3",
+  "altitude": "FL280B",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)"
+},
+{
+  "origin": "DTW",
+  "destination": "MDW",
+  "route": "CCOBB3 ZEGBI LEROY BAGEL PANGG6",
+  "altitude": "FL220B",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)"
+},
+{
+  "origin": "DTW",
+  "destination": "BDL",
+  "route": "HHOWE4 LNCON JHW Q82 MEMMS WILET STELA1",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)"
+},
+{
+  "origin": "DTW",
+  "destination": "CVG",
+  "route": "SNDRS3 TORRR DEBAR ARBAS RID MEEKR",
+  "altitude": "FL200B",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)"
+},
+{
+  "origin": "DTW",
+  "destination": "IND",
+  "route": "SNDRS3 TORRR SNKPT SNKPT2",
+  "altitude": "FL220B",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)"
+},
+{
+  "origin": "DTW",
+  "destination": "SDF",
+  "route": "CLVIN3 CLVIN RINTE DLAMP8",
+  "altitude": "FL280B",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)"
+},
+{
+  "origin": "DTW",
+  "destination": "YYZ",
+  "route": "ZETTR4 TANKO APDAX NUBER6",
+  "altitude": "FL210B",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)"
+},
+{
+  "origin": "DTW",
+  "destination": "CLE",
+  "route": "KZLOV2 WINNZ BRWNZ4",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)",
+  "altitude": "10000B"
+},
+{
+  "origin": "DTW",
+  "destination": "BUF",
+  "route": "HHOWE4 BROKK DKK",
+  "altitude": "FL270B",
+  "notes": "From Detroit Metro (DTW,DET,PTK,YIP,ARB)"
+},
+{
+  "origin": "PIT",
+  "destination": "YYZ",
+  "route": "EWC OXMAN LINNG3",
+  "altitude": "",
+  "notes": ""
+}]

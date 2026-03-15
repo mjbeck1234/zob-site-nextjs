@@ -1,0 +1,2 @@
+-- Stored deployments use the existing `stats` table for controller statistics.
+-- No monthly controller-hours tables are created in this project snapshot.

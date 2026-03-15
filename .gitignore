@@ -1,0 +1,52 @@
+# --- Node / Next ---
+node_modules/
+.next/
+out/
+dist/
+build/
+.turbo/
+.cache/
+.nyc_output/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Env / secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# --- TypeScript ---
+*.tsbuildinfo
+
+# --- Docker / local volumes ---
+db_data/
+/data/
+docker-data/
+*.sqlite
+*.sqlite3
+
+# --- Uploads / runtime files (if any) ---
+uploads/
+tmp/
+
+# --- Misc ---
+.vercel/
+
+# --- Allow checked-in app data ---
+!src/data/
+!src/data/**
+
+*/sql/
