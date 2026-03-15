@@ -11,16 +11,6 @@ Modern Next.js rewrite of the Cleveland ARTCC site, built around a MySQL/MariaDB
 - Pilot features including ramp tools and pilot resources
 - Legacy-compatible controller statistics using the `stats` table
 
-## Current project assumptions
-
-This README reflects the current cleaned-up project state discussed in development:
-
-- **Database:** MySQL / MariaDB
-- **ORM:** Prisma is **not** used
-- **Wiki:** Wiki code/features are removed
-- **Stats source:** controller stats come from the legacy `stats` table only
-- **Auth:** cookie/session auth with optional VATSIM OAuth and optional local auth bypass for development
-
 ## Tech stack
 
 - Next.js 16
@@ -247,6 +237,5 @@ The following are intentionally not part of the current codebase direction:
 
 - keep `.env.example` aligned with the current feature set
 - remove any dead SQL files no longer used by the active schema
-- keep admin pages resilient to missing optional legacy tables
 - document navdata import/update steps more explicitly if multiple operators will maintain the site
 
