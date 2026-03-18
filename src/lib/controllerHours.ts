@@ -102,6 +102,24 @@ export async function getTopControllersThisMonth(limit = 3): Promise<TopControll
   const recMonth = monthNameUtc();
   const recYear = yearUtc();
 
+  const checks = await sql<any[]>`
+  SELECT
+    DATABASE() AS db_name,
+    CURRENT_USER() AS db_user,
+    @@hostname AS server_host,
+    (
+      SELECT COUNT(*)
+      FROM stats
+      WHERE rec_month = 'March' AND rec_year = '2026'
+    ) AS march_2026_count,
+    (
+      SELECT COUNT(*)
+      FROM stats
+      WHERE rec_month = 'March' AND rec_year = '2025'
+    ) AS march_2025_count
+`;
+console.log('DB CHECKS:', checks);
+
   let rows: any[] = [];
   try {
     rows = await sql<any[]>`
