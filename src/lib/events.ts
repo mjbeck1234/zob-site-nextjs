@@ -168,9 +168,8 @@ export async function listPublishedEvents(opts?: {
   const fromToday = Boolean(opts?.fromToday);
   const safeLimit = Math.max(1, Math.min(500, Number.isFinite(opts?.limit as any) ? Number(opts?.limit) : 200));
   const order: 'ASC' | 'DESC' = (opts?.order ?? 'asc') === 'desc' ? 'DESC' : 'ASC';
-
-  const safeLimit = Math.max(1, Math.min(500, Number(limit) || 200));
   const where: string[] = [`(published = 'Yes' OR published = 1 OR published = '1' OR published = TRUE)`];
+  
   if (!includeArchived) where.push(`archived = 0`);
   if (fromToday) where.push(`event_date >= CURDATE()`);
 
