@@ -1,6 +1,5 @@
 import PageShell from '@/components/PageShell';
 import { getDownloadsByCategory } from '@/lib/content';
-import { tableHasColumn } from '@/lib/schema';
 import { getUser } from '@/lib/auth/getUser';
 import { site } from '@/lib/site';
 
@@ -99,27 +98,6 @@ export default async function DownloadsPage() {
   const canSeeTraining = roles.some((r) => ['mentor', 'ins', 'ATM', 'DATM', 'TA', 'ATA', 'WM', 'AWM', 'staff'].includes(r));
 
   const downloadsArchiveUrl = (process.env.DOWNLOADS_ARCHIVE_URL ?? '').trim();
-
-  const hasCategory = await tableHasColumn('downloads', 'category').catch(() => false);
-
-  // If the schema doesn't support categories, show everything in one list
-  if (!hasCategory) {
-    const all = await getDownloadsByCategory(undefined);
-    return (
-      <PageShell title="Downloads" subtitle="Documents and resources." crumbs={[{ href: '/', label: 'Home' }, { label: 'Downloads' }]}>
-        {downloadsArchiveUrl ? (
-          <div className="mb-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/80">
-            Looking for older files?{' '}
-            <a className="underline" href={downloadsArchiveUrl} target="_blank" rel="noreferrer">
-              Open the downloads archive archive
-            </a>
-            .
-          </div>
-        ) : null}
-        <DownloadsTable rows={all} />
-      </PageShell>
-    );
-  }
 
   const visibleCategories = CATEGORIES.filter((c) => (c === 'Training' ? canSeeTraining : true));
 

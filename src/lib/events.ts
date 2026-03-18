@@ -1,5 +1,4 @@
 import { sql } from '@/lib/db';
-import { tableHasColumn } from '@/lib/schema';
 
 function toBoolInt(v: any): boolean {
   if (v === true) return true;
@@ -170,43 +169,21 @@ export async function listPublishedEvents(opts?: {
   const limit = Number.isFinite(opts?.limit as any) ? Number(opts?.limit) : 200;
   const order: 'ASC' | 'DESC' = (opts?.order ?? 'asc') === 'desc' ? 'DESC' : 'ASC';
 
-  const hasEventDate = await tableHasColumn('events', 'event_date').catch(() => false);
-  const hasArchived = await tableHasColumn('events', 'archived').catch(() => false);
+  const safeLimit = Math.max(1, Math.min(500, Number(limit) || 200));
+  const where: string[] = [`(published = 'Yes' OR published = 1 OR published = '1' OR published = TRUE)`];
+  if (!includeArchived) where.push(`archived = 0`);
+  if (fromToday) where.push(`event_date >= CURDATE()`);
 
-  if (hasEventDate) {
-    // Support existing (Yes/No) and numeric/boolean (1/0) published formats.
-    const where: string[] = [`(published = 'Yes' OR published = 1 OR published = '1' OR published = TRUE)`];
-    if (hasArchived && !includeArchived) where.push(`archived = 0`);
-    if (fromToday) where.push(`event_date >= CURDATE()`);
-
-    const rows = await sql<any[]>`
-      SELECT *
-      FROM events
-      WHERE ${sql.unsafe(where.join(' AND '))}
-      ORDER BY ${sql.unsafe(storedStartSortExpr(order))}
-      LIMIT ${limit}
-    `;
-    return (rows ?? []).map(mapEventRow);
-  }
-
-  // Fallback: generic schema
   const rows = await sql<any[]>`
     SELECT *
     FROM events
-    ORDER BY id ${sql.unsafe(order)}
-    LIMIT ${limit}
+    WHERE ${sql.unsafe(where.join(' AND '))}
+    ORDER BY ${sql.unsafe(storedStartSortExpr(order))}
+    LIMIT ${sql.unsafe(String(safeLimit))}
   `;
   return (rows ?? []).map(mapEventRow);
 }
 
 export async function getUpcomingPublishedEvents(limit = 50) {
-  // Some installs use event_date/time_start.
-  const hasEventDate = await tableHasColumn('events', 'event_date').catch(() => false);
-  if (hasEventDate) {
-    // Upcoming = published + not archived + from today onward.
-    return listPublishedEvents({ includeArchived: false, order: 'asc', limit, fromToday: true });
-  }
-
-  // Fallback: best effort.
-  return listPublishedEvents({ includeArchived: false, order: 'asc', limit });
+  return listPublishedEvents({ includeArchived: false, order: 'asc', limit, fromToday: true });
 }

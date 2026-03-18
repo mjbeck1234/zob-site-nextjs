@@ -4,22 +4,11 @@ import { requireExamsManager } from '@/lib/auth/guards';
 import { sql } from '@/lib/db';
 import { createExamAction } from '../actions';
 
-async function tableHasColumn(table: string, column: string): Promise<boolean> {
-  const rows: any[] = await sql`
-    SELECT COUNT(*) AS c
-    FROM information_schema.COLUMNS
-    WHERE TABLE_SCHEMA = DATABASE()
-      AND TABLE_NAME = ${table}
-      AND COLUMN_NAME = ${column}
-  `;
-  return Number(rows?.[0]?.c ?? 0) > 0;
-}
-
 export default async function NewExamPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   await requireExamsManager();
   const sp = await searchParams;
 
-  const hasDesc = await tableHasColumn('exams', 'description').catch(() => false);
+  const hasDesc = false;
 
   return (
     <PageShell

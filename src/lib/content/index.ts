@@ -1,26 +1,11 @@
-import { tableHasColumn, tableExists } from '@/lib/schema';
+import { getTableColumns, tableExists } from '@/lib/schema';
 import { selectAll } from '@/lib/query';
 import { getUpcomingPublishedEvents } from '@/lib/events';
 import { sql } from '@/lib/db';
 import { insertDynamic } from '@/lib/admin/crud';
 
 export async function getNotices(limit = 5) {
-  const hasPublished = await tableHasColumn('notices', 'published').catch(() => false);
-  const hasArchived = await tableHasColumn('notices', 'archived').catch(() => false);
-  const hasCreatedAt = await tableHasColumn('notices', 'created_at').catch(() => false);
-  const hasDate = await tableHasColumn('notices', 'date').catch(() => false);
-
-  const where: string[] = [];
-  if (hasPublished) where.push(`published = TRUE`);
-  if (hasArchived) where.push(`archived = FALSE`);
-
-  const orderBy = hasCreatedAt ? `created_at DESC` : hasDate ? `date DESC` : `id DESC`;
-
-  return selectAll('notices', {
-    whereSql: where.length ? where.join(' AND ') : undefined,
-    orderBySql: orderBy,
-    limit,
-  });
+  return selectAll('notices', { orderBySql: 'published_date DESC', limit });
 }
 
 export async function getUpcomingEvents(limit = 6) {
@@ -34,21 +19,16 @@ export async function getUpcomingEvents(limit = 6) {
 }
 
 export async function getDownloadsByCategory(category?: string) {
-  const hasCategory = await tableHasColumn('downloads', 'category').catch(() => false);
-  const hasUploadDate = await tableHasColumn('downloads', 'upload_date').catch(() => false);
-
   return selectAll('downloads', {
-    whereSql: hasCategory && category ? `category = ?` : undefined,
-    params: hasCategory && category ? [category] : undefined,
-    orderBySql: hasUploadDate ? 'upload_date DESC' : 'id DESC',
+    whereSql: category ? `category = ?` : undefined,
+    params: category ? [category] : undefined,
+    orderBySql: 'upload_date DESC',
     limit: 200,
   });
 }
 
 export async function getRoster() {
-  const hasLastName = await tableHasColumn('roster', 'last_name').catch(() => false);
-  const orderBy = hasLastName ? 'last_name ASC' : 'id ASC';
-  return selectAll('roster', { orderBySql: orderBy, limit: 2000 });
+  return selectAll('roster', { orderBySql: 'last_name ASC', limit: 2000 });
 }
 
 /**
@@ -67,15 +47,11 @@ export async function getRosterEntryByCid(cid: number) {
 export async function getStaff() {
   const exists = await tableExists('staff').catch(() => false);
   if (!exists) return [];
-
-  const hasRole = await tableHasColumn('staff', 'role').catch(() => false);
-  const orderBy = hasRole ? 'role ASC' : 'id ASC';
-  return selectAll('staff', { orderBySql: orderBy, limit: 2000 }).catch(() => [] as any[]);
+  return selectAll('staff', { orderBySql: 'id ASC', limit: 2000 }).catch(() => [] as any[]);
 }
 
 export async function getRoutes(arrival?: string) {
-  const hasArr = await tableHasColumn('routes', 'arr').catch(() => false);
-  if (hasArr && arrival) {
+  if (arrival) {
     return selectAll('routes', {
       whereSql: 'arr = ?',
       params: [arrival.toUpperCase()],
@@ -87,10 +63,9 @@ export async function getRoutes(arrival?: string) {
 }
 
 export async function getSplits() {
-  const hasCreatedAt = await tableHasColumn('splits', 'created_at').catch(() => false);
   // Return all splits rows (each callsign/frequency/type row describes the sectors it covers).
   // The public map page groups these into High/Low maps.
-  return selectAll('splits', { orderBySql: hasCreatedAt ? 'created_at DESC' : 'id DESC', limit: 500 });
+  return selectAll('splits', { orderBySql: 'created_at DESC', limit: 500 });
 }
 
 export async function getSplitsForActiveSelection(): Promise<{ rows: any[]; selection: ActiveSplitSelection }> {
@@ -192,17 +167,9 @@ export type NoticeRow = {
 };
 
 export async function getNoticeById(id: number) {
-  const hasPublished = await tableHasColumn('notices', 'published').catch(() => false);
-  const hasArchived = await tableHasColumn('notices', 'archived').catch(() => false);
-
-  const where = ['id = ?'];
-  const params: any[] = [Number(id)];
-  if (hasPublished) where.push('published = TRUE');
-  if (hasArchived) where.push('archived = FALSE');
-
   const rows = await selectAll('notices', {
-    whereSql: where.join(' AND '),
-    params,
+    whereSql: 'id = ?',
+    params: [Number(id)],
     limit: 1,
   }).catch(() => [] as any[]);
 
@@ -309,33 +276,28 @@ export async function createVisitRequest(args: {
   const homeFacility = (args.homeFacility ?? '').toString().trim() || null;
   const reason = (args.reason ?? '').toString().trim() || null;
 
-  // Try flexible inserts based on available columns.
-  const hasFullName = await tableHasColumn(table, 'full_name').catch(() => false);
-  const hasEmail = await tableHasColumn(table, 'email').catch(() => false);
-  const hasRating = await tableHasColumn(table, 'rating').catch(() => false);
-  const hasHome = await tableHasColumn(table, 'home_facility').catch(() => false);
-  const hasReason = await tableHasColumn(table, 'reason').catch(() => false);
+  const available = new Set(await getTableColumns(table));
 
   const cols: string[] = ['cid'];
   const vals: any[] = [cid];
 
-  if (hasFullName) {
+  if (available.has('full_name')) {
     cols.push('full_name');
     vals.push(fullName);
   }
-  if (hasEmail) {
+  if (available.has('email')) {
     cols.push('email');
     vals.push(email);
   }
-  if (hasRating) {
+  if (available.has('rating')) {
     cols.push('rating');
     vals.push(rating);
   }
-  if (hasHome) {
+  if (available.has('home_facility')) {
     cols.push('home_facility');
     vals.push(homeFacility);
   }
-  if (hasReason) {
+  if (available.has('reason')) {
     cols.push('reason');
     vals.push(reason);
   }
