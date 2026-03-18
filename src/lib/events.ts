@@ -167,7 +167,7 @@ export async function listPublishedEvents(opts?: {
 }) {
   const includeArchived = Boolean(opts?.includeArchived);
   const fromToday = Boolean(opts?.fromToday);
-  const limit = Number.isFinite(opts?.limit as any) ? Number(opts?.limit) : 200;
+  const safeLimit = Math.max(1, Math.min(500, Number.isFinite(opts?.limit as any) ? Number(opts?.limit) : 200));
   const order: 'ASC' | 'DESC' = (opts?.order ?? 'asc') === 'desc' ? 'DESC' : 'ASC';
 
   const hasEventDate = await tableHasColumn('events', 'event_date').catch(() => false);
@@ -184,7 +184,7 @@ export async function listPublishedEvents(opts?: {
       FROM events
       WHERE ${sql.unsafe(where.join(' AND '))}
       ORDER BY ${sql.unsafe(storedStartSortExpr(order))}
-      LIMIT ${limit}
+      LIMIT ${sql.unsafe(String(safeLimit))}
     `;
     return (rows ?? []).map(mapEventRow);
   }
@@ -194,7 +194,7 @@ export async function listPublishedEvents(opts?: {
     SELECT *
     FROM events
     ORDER BY id ${sql.unsafe(order)}
-    LIMIT ${limit}
+    LIMIT ${sql.unsafe(String(safeLimit))}
   `;
   return (rows ?? []).map(mapEventRow);
 }
