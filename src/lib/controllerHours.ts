@@ -101,6 +101,7 @@ export async function getTopControllersThisMonth(limit = 3): Promise<TopControll
 
   const recMonth = monthNameUtc();
   const recYear = yearUtc();
+  const safeLimit = Math.max(1, Math.min(100, Number(limit) || 3));
 
   let rows: any[] = [];
   try {
@@ -109,7 +110,7 @@ export async function getTopControllersThisMonth(limit = 3): Promise<TopControll
       FROM stats
       WHERE rec_month = ${recMonth} AND rec_year = ${recYear}
       ORDER BY minutes DESC
-      LIMIT ${limit}
+      LIMIT ${sql.unsafe(String(safeLimit))}
     `;
   } catch (error) {
     logControllerHoursFallback('existing stats month leaderboard lookup failed; returning empty leaderboard', error);

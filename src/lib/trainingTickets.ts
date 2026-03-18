@@ -91,7 +91,7 @@ async function listStoredTicketsForStudent(studentCid: number, limit: number) {
     FROM tickets
     WHERE controller_cid = $1
     ORDER BY date DESC, id DESC
-    LIMIT ${Math.min(Math.max(limit, 1), 500)}
+    LIMIT ${String(Math.min(Math.max(limit, 1), 500))}
   `;
 
   const rows = await sql.unsafe<any[]>(q, [String(studentCid)]);
@@ -109,11 +109,12 @@ async function listStoredTicketsForStudent(studentCid: number, limit: number) {
 export async function listTrainingTickets(limit = 200) {
   const info = await getTrainingTicketsSchemaInfo();
   if (!info.table) return [];
+  const safeLimit = Math.min(Math.max(Number(limit) || 200, 1), 500);
   return sql<any[]>`
     SELECT *
     FROM training_tickets
     ORDER BY session_start DESC, id DESC
-    LIMIT ${limit}
+    LIMIT ${sql.unsafe(String(safeLimit))}
   `;
 }
 
@@ -130,7 +131,7 @@ export async function listTrainingTicketsForStudent(studentCid: number, limit = 
         FROM training_tickets
         WHERE student_cid = ${studentCid}
         ORDER BY (session_start IS NULL) ASC, session_start DESC, id DESC
-        LIMIT ${lim}
+        LIMIT ${sql.unsafe(String(lim))}
       `
     : ([] as any[]);
 
@@ -150,12 +151,13 @@ export async function listTrainingTicketsForStudent(studentCid: number, limit = 
 export async function listTrainingTicketsForMentor(mentorCid: number, limit = 200) {
   const info = await getTrainingTicketsSchemaInfo();
   if (!info.table) return [];
+  const safeLimit = Math.min(Math.max(Number(limit) || 200, 1), 500);
   return sql<any[]>`
     SELECT *
     FROM training_tickets
     WHERE mentor_cid = ${mentorCid}
     ORDER BY (session_start IS NULL) ASC, session_start DESC, id DESC
-    LIMIT ${limit}
+    LIMIT ${sql.unsafe(String(safeLimit))}
   `;
 }
 

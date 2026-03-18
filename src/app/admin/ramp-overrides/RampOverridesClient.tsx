@@ -244,20 +244,22 @@ export default function RampOverridesClient() {
     setLoading(true);
     setError(null);
     try {
-      const [ovRes, occRes] = await Promise.all([
+      const [ovRes, occRes, standsRes] = await Promise.all([
         fetch(`/api/admin/ramp-overrides?icao=${encodeURIComponent(icao)}`, { cache: 'no-store' }),
         fetch(`/api/ids/ramp/occupancy?icao=${encodeURIComponent(icao)}`, { cache: 'no-store' }),
+        fetch(`/api/ids/ramp/stands?icao=${encodeURIComponent(icao)}`, { cache: 'no-store' }),
       ]);
 
       const ovJson = await ovRes.json();
       setTableExists(Boolean(ovJson?.tableExists));
       setOverrides(Array.isArray(ovJson?.overrides) ? ovJson.overrides : []);
 
-      const occJson = await occRes.json();
-      const occStands = Array.isArray(occJson?.stands) ? occJson.stands : [];
+      const occJson = await occRes.json().catch(() => null);
+      const standsJson = await standsRes.json().catch(() => null);
+      const occStands = Array.isArray(occJson?.stands) && occJson.stands.length ? occJson.stands : (Array.isArray(standsJson?.stands) ? standsJson.stands : []);
       const occAreas = Array.isArray(occJson?.areas) ? occJson.areas : [];
-      const occCenter = occJson?.center;
-      const occBbox = occJson?.bbox;
+      const occCenter = occJson?.center ?? standsJson?.center;
+      const occBbox = occJson?.bbox ?? standsJson?.bbox;
       setCenter(
         occCenter && occCenter.lat != null && occCenter.lon != null
           ? { lat: Number(occCenter.lat), lon: Number(occCenter.lon) }
@@ -523,6 +525,28 @@ const importCsv = useCallback(async () => {
 	    {!canEdit ? <div className="text-xs text-amber-100/80">Overrides table is missing — tools are view-only.</div> : null}
 	  </div>
 	</div>
+
+      <div className="ui-card">
+        <div className="ui-card__header">
+          <div className="text-sm font-semibold">Ramp map</div>
+          <span className="ui-badge">{icao}</span>
+        </div>
+        <div className="ui-card__body">
+          <RampOverridesMap
+            icao={icao}
+            center={center}
+            bbox={bbox}
+            stands={stands}
+            overrides={overrides}
+            placementEnabled={placementEnabled}
+            dragOverridesEnabled={dragOverridesEnabled}
+            canEdit={canEdit}
+            picked={picked}
+            onPick={onPick}
+            onMoveOverride={onMoveOverride}
+          />
+        </div>
+      </div>
 
 <div className="ui-card">
   <div className="ui-card__header">
