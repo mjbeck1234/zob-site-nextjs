@@ -821,12 +821,13 @@ export async function listAttemptsForStudent(cid: number): Promise<ExamAttemptRo
 export async function listAttemptsForExam(examId: number, limit = 50): Promise<ExamAttemptRow[]> {
   const ok = await tableExists('exam_attempts');
   if (!ok) return [];
+  const safeLimit = Math.max(1, Math.min(500, Number(limit) || 50));
   return await sql<ExamAttemptRow[]>`
     SELECT *
     FROM exam_attempts
     WHERE exam_id = ${examId}
     ORDER BY id DESC
-    LIMIT ${limit}
+    LIMIT ${sql.unsafe(String(safeLimit))}
   `;
 }
 
@@ -1124,7 +1125,7 @@ export async function listPendingCorrections(limit = 200): Promise<any[]> {
     LEFT JOIN exams e ON e.id = a.exam_id
     WHERE c.status = 'pending'
     ORDER BY (c.created_at IS NULL) ASC, c.created_at ASC, c.id ASC
-    LIMIT ${Math.max(1, Math.min(1000, Number(limit) || 200))}
+    LIMIT ${sql.unsafe(String(Math.max(1, Math.min(1000, Number(limit) || 200))))}
   `;
   return rows as any;
 }

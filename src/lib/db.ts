@@ -161,6 +161,39 @@ function stripCreateIndexIfNotExists(query: string): string {
     .replace(/CREATE\s+INDEX\s+IF\s+NOT\s+EXISTS\s+/gi, 'CREATE INDEX ');
 }
 
+function inlinePreparedNumericClauses(text: string, values: any[]): { text: string; values: any[] } {
+  if (!/\b(?:LIMIT|OFFSET)\s+\?/i.test(text)) return { text, values };
+
+  let out = '';
+  const nextValues: any[] = [];
+  let valueIndex = 0;
+
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch !== '?') {
+      out += ch;
+      continue;
+    }
+
+    const value = values[valueIndex++];
+    const prefix = out.replace(/\s+$/g, '');
+    const isLimitOrOffset = /\b(?:LIMIT|OFFSET)$/i.test(prefix);
+
+    if (isLimitOrOffset) {
+      const n = Number(value);
+      if (!Number.isFinite(n) || n < 0) {
+        throw new Error(`Invalid numeric SQL clause value: ${value}`);
+      }
+      out += String(Math.floor(n));
+    } else {
+      out += '?';
+      nextValues.push(value);
+    }
+  }
+
+  return { text: out, values: nextValues };
+}
+
 async function runQuery<T>(conn: Pool | PoolConnection, q: SQLFragment): Promise<any> {
   // Normalize a few Postgres-ish syntaxes that show up in this repo.
   let text = q.text.trim().replace(/;+\s*$/, '');
@@ -219,7 +252,8 @@ async function runQuery<T>(conn: Pool | PoolConnection, q: SQLFragment): Promise
   }
 
   try {
-    const [rows] = await (conn as any).execute(text, q.values);
+    const normalized = inlinePreparedNumericClauses(text, q.values);
+    const [rows] = await (conn as any).execute(normalized.text, normalized.values);
     return rows;
   } catch (err: any) {
     // Optional server log (enable with DB_DEBUG=true). We keep this quiet by default

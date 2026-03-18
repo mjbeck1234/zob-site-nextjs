@@ -166,7 +166,7 @@ export async function listPublishedEvents(opts?: {
 }) {
   const includeArchived = Boolean(opts?.includeArchived);
   const fromToday = Boolean(opts?.fromToday);
-  const limit = Number.isFinite(opts?.limit as any) ? Number(opts?.limit) : 200;
+  const safeLimit = Math.max(1, Math.min(500, Number.isFinite(opts?.limit as any) ? Number(opts?.limit) : 200));
   const order: 'ASC' | 'DESC' = (opts?.order ?? 'asc') === 'desc' ? 'DESC' : 'ASC';
 
   const safeLimit = Math.max(1, Math.min(500, Number(limit) || 200));
