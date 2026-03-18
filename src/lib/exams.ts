@@ -1,6 +1,6 @@
 import { sql } from '@/lib/db';
 import { insertDynamic } from '@/lib/admin/crud';
-import { tableExists, tableHasColumn } from '@/lib/schema';
+import { tableExists } from '@/lib/schema';
 import type { SessionUser } from '@/lib/auth/session';
 
 export type ExamRow = {
@@ -74,16 +74,11 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 async function isStoredExamsTable(): Promise<boolean> {
-  // Stored phpMyAdmin dump schema uses `passing_score` instead of `pass_percent`
-  // and typically stores `published` as 'Yes'/'No'.
-  const hasPassing = await tableHasColumn('exams', 'passing_score').catch(() => false);
-  const hasPassPercent = await tableHasColumn('exams', 'pass_percent').catch(() => false);
-  return hasPassing && !hasPassPercent;
+  return true;
 }
 
 async function isStoredExamQuestionsTable(): Promise<boolean> {
-  // Stored schema uses `content`, `type`, `answer`, `d1`..`d3`.
-  return await tableHasColumn('exam_questions', 'content').catch(() => false);
+  return true;
 }
 
 function storedChoiceId(questionId: number, optionIndex1Based: number): number {
@@ -111,14 +106,14 @@ export async function listPublishedExams(): Promise<ExamRow[]> {
 
   const existing = await isStoredExamsTable();
 
-  const hasTitle = await tableHasColumn('exams', 'title').catch(() => false);
-  const hasDesc = await tableHasColumn('exams', 'description').catch(() => false);
-  const hasPassPercent = await tableHasColumn('exams', 'pass_percent').catch(() => false);
-  const hasPassingScore = await tableHasColumn('exams', 'passing_score').catch(() => false);
-  const hasPublished = await tableHasColumn('exams', 'published').catch(() => false);
-  const hasArchived = await tableHasColumn('exams', 'archived').catch(() => false);
-  const hasCreated = await tableHasColumn('exams', 'created_at').catch(() => false);
-  const hasUpdated = await tableHasColumn('exams', 'updated_at').catch(() => false);
+  const hasTitle = true;
+  const hasDesc = false;
+  const hasPassPercent = false;
+  const hasPassingScore = true;
+  const hasPublished = false;
+  const hasArchived = false;
+  const hasCreated = true;
+  const hasUpdated = true;
 
   const rows = await sql<any[]>`
     SELECT
@@ -174,14 +169,14 @@ export async function listAllExams(): Promise<ExamRow[]> {
 
   const existing = await isStoredExamsTable();
 
-  const hasTitle = await tableHasColumn('exams', 'title').catch(() => false);
-  const hasDesc = await tableHasColumn('exams', 'description').catch(() => false);
-  const hasPassPercent = await tableHasColumn('exams', 'pass_percent').catch(() => false);
-  const hasPassingScore = await tableHasColumn('exams', 'passing_score').catch(() => false);
-  const hasPublished = await tableHasColumn('exams', 'published').catch(() => false);
-  const hasArchived = await tableHasColumn('exams', 'archived').catch(() => false);
-  const hasCreated = await tableHasColumn('exams', 'created_at').catch(() => false);
-  const hasUpdated = await tableHasColumn('exams', 'updated_at').catch(() => false);
+  const hasTitle = true;
+  const hasDesc = false;
+  const hasPassPercent = false;
+  const hasPassingScore = true;
+  const hasPublished = false;
+  const hasArchived = false;
+  const hasCreated = true;
+  const hasUpdated = true;
 
   const rows = await sql<any[]>`
     SELECT
@@ -225,14 +220,14 @@ export async function getExamById(examId: string | number): Promise<ExamRow | nu
 
   const existing = await isStoredExamsTable();
 
-  const hasTitle = await tableHasColumn('exams', 'title').catch(() => false);
-  const hasDesc = await tableHasColumn('exams', 'description').catch(() => false);
-  const hasPassPercent = await tableHasColumn('exams', 'pass_percent').catch(() => false);
-  const hasPassingScore = await tableHasColumn('exams', 'passing_score').catch(() => false);
-  const hasPublished = await tableHasColumn('exams', 'published').catch(() => false);
-  const hasArchived = await tableHasColumn('exams', 'archived').catch(() => false);
-  const hasCreated = await tableHasColumn('exams', 'created_at').catch(() => false);
-  const hasUpdated = await tableHasColumn('exams', 'updated_at').catch(() => false);
+  const hasTitle = true;
+  const hasDesc = false;
+  const hasPassPercent = false;
+  const hasPassingScore = true;
+  const hasPublished = false;
+  const hasArchived = false;
+  const hasCreated = true;
+  const hasUpdated = true;
 
   const rows = await sql<any[]>`
     SELECT

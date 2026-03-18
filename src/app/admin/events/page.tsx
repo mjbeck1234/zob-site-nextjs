@@ -3,7 +3,7 @@ import PageShell from '@/components/PageShell';
 import { requireEventsManager } from '@/lib/auth/guards';
 import { selectAll } from '@/lib/query';
 import { deleteEventAction } from './actions';
-import { tableExists, tableHasColumn } from '@/lib/schema';
+import { tableExists } from '@/lib/schema';
 
 function truthy01(v: any): boolean {
   if (v === true) return true;
@@ -30,18 +30,11 @@ export default async function AdminEventsPage({ searchParams }: { searchParams: 
 
   let events: any[] = [];
   if (exists) {
-    const hasEventDate = await tableHasColumn('events', 'event_date').catch(() => false);
-    const hasStartAt = await tableHasColumn('events', 'start_at').catch(() => false);
-    const hasArchived = await tableHasColumn('events', 'archived').catch(() => false);
-
-    const orderBySql = hasEventDate
-      ? 'event_date ASC, time_start ASC, id ASC'
-      : hasStartAt
-        ? 'start_at ASC, id ASC'
-        : 'id DESC';
-
-    const whereSql = !showArchived && hasArchived ? `archived = 0` : undefined;
-    events = await selectAll('events', { whereSql, orderBySql, limit: 200 }).catch(() => []);
+    events = await selectAll('events', {
+      whereSql: showArchived ? undefined : 'archived = 0',
+      orderBySql: `event_date ASC, id ASC`,
+      limit: 500,
+    }).catch(() => [] as any[]);
   }
 
   return (

@@ -14,17 +14,6 @@ function num(v: FormDataEntryValue | null, fallback = 0): number {
   return Number.isFinite(n) ? n : fallback;
 }
 
-async function tableHasColumn(table: string, column: string): Promise<boolean> {
-  const rows: any[] = await sql`
-    SELECT COUNT(*) AS c
-    FROM information_schema.COLUMNS
-    WHERE TABLE_SCHEMA = DATABASE()
-      AND TABLE_NAME = ${table}
-      AND COLUMN_NAME = ${column}
-  `;
-  return Number(rows?.[0]?.c ?? 0) > 0;
-}
-
 /**
  * Schema notes:
  * - exams: id, title, passing_score, number_to_ask, reassign_period, created_at, updated_at (no description by default)
@@ -43,7 +32,7 @@ export async function createExamAction(formData: FormData) {
 
   if (!title) redirect('/admin/exams/new?error=missing');
 
-  const hasDesc = await tableHasColumn('exams', 'description').catch(() => false);
+  const hasDesc = false;
   const cols: string[] = ['title', 'passing_score', 'number_to_ask', 'reassign_period'];
   const vals: any[] = [title, passPercent, numberToAsk, reassignPeriod];
 
@@ -70,7 +59,7 @@ export async function updateExamAction(examId: string, formData: FormData) {
   const numberToAsk = num(formData.get('number_to_ask'), 0);
   const reassignPeriod = num(formData.get('reassign_period'), 0);
 
-  const hasDesc = await tableHasColumn('exams', 'description').catch(() => false);
+  const hasDesc = false;
 
   // Build a safe dynamic UPDATE so we don't crash if description doesn't exist.
   const sets: string[] = [];
@@ -84,7 +73,7 @@ export async function updateExamAction(examId: string, formData: FormData) {
   if (hasDesc) { sets.push('description = ?'); vals.push(description || null); }
 
   // If timestamps exist, update updated_at
-  const hasUpdated = await tableHasColumn('exams', 'updated_at').catch(() => false);
+  const hasUpdated = true;
   if (hasUpdated) sets.push('updated_at = NOW()');
 
   vals.push(id);

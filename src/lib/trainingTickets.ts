@@ -1,5 +1,5 @@
 import { sql } from '@/lib/db';
-import { tableExists, tableHasColumn } from '@/lib/schema';
+import { tableExists } from '@/lib/schema';
 
 export type TrainingSessionType = 'sweatbox' | 'on_the_job' | 'classroom' | 'mentor_in_training';
 
@@ -22,16 +22,7 @@ export async function getTrainingTicketsSchemaInfo() {
     };
   }
 
-  const hasNoShow = await tableHasColumn('training_tickets', 'no_show').catch(() => false);
-  const hasRubric =
-    (await tableHasColumn('training_tickets', 'rubric_ratings').catch(() => false)) &&
-    (await tableHasColumn('training_tickets', 'rubric_checks').catch(() => false));
-  const hasNotesSplit =
-    (await tableHasColumn('training_tickets', 'notes_student').catch(() => false)) &&
-    (await tableHasColumn('training_tickets', 'notes_future').catch(() => false));
-  const hasUpdatedAt = await tableHasColumn('training_tickets', 'updated_at').catch(() => false);
-
-  return { table: true, hasNoShow, hasRubric, hasNotesSplit, hasUpdatedAt };
+  return { table: true, hasNoShow: true, hasRubric: true, hasNotesSplit: true, hasUpdatedAt: true };
 }
 
 export async function hasTrainingTicketsTable(): Promise<boolean> {
@@ -114,7 +105,7 @@ export async function listTrainingTickets(limit = 200) {
     SELECT *
     FROM training_tickets
     ORDER BY session_start DESC, id DESC
-    LIMIT ${sql.unsafe(String(safeLimit))}
+    LIMIT ${sql.unsafe(String(Math.min(Math.max(limit,1),500)))}
   `;
 }
 
@@ -157,7 +148,7 @@ export async function listTrainingTicketsForMentor(mentorCid: number, limit = 20
     FROM training_tickets
     WHERE mentor_cid = ${mentorCid}
     ORDER BY (session_start IS NULL) ASC, session_start DESC, id DESC
-    LIMIT ${sql.unsafe(String(safeLimit))}
+    LIMIT ${sql.unsafe(String(Math.min(Math.max(limit,1),500)))}
   `;
 }
 

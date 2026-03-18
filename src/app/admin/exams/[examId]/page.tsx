@@ -23,17 +23,6 @@ type StoredExamQuestion = {
   d3: string;
 };
 
-async function tableHasColumn(table: string, column: string): Promise<boolean> {
-  const rows: any[] = await sql`
-    SELECT COUNT(*) AS c
-    FROM information_schema.COLUMNS
-    WHERE TABLE_SCHEMA = DATABASE()
-      AND TABLE_NAME = ${table}
-      AND COLUMN_NAME = ${column}
-  `;
-  return Number(rows?.[0]?.c ?? 0) > 0;
-}
-
 export default async function EditExamPage({ params, searchParams }: { params: Promise<{ examId: string }>; searchParams: Promise<{ saved?: string; reset?: string; error?: string; q_added?: string; q_saved?: string }> }) {
   await requireExamsManager();
   const { examId } = await params;
@@ -49,7 +38,7 @@ export default async function EditExamPage({ params, searchParams }: { params: P
   }
 
   const eid = Number(exam.id);
-  const hasDesc = await tableHasColumn('exams', 'description').catch(() => false);
+  const hasDesc = false;
 
   const questions = await sql<StoredExamQuestion[]>`
     SELECT id, exam_id, content, type, answer, d1, d2, d3

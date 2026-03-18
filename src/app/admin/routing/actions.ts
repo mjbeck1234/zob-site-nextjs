@@ -2,7 +2,6 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { requireAdmin } from '@/lib/auth/admin';
 import { deleteById, insertDynamic, normalizeText, updateDynamic } from '@/lib/admin/crud';
-import { tableHasColumn } from '@/lib/schema';
 
 export async function createRouteAction(formData: FormData) {
   'use server';
@@ -15,12 +14,7 @@ export async function createRouteAction(formData: FormData) {
     remarks: normalizeText(formData.get('remarks')),
   };
 
-  // Validate required fields based on the actual DB schema.
-  // Many installs have NOT NULL dep/arr.
-  const hasDep = await tableHasColumn('routes', 'dep').catch(() => false);
-  const hasArr = await tableHasColumn('routes', 'arr').catch(() => false);
-  if (hasDep && !payload.dep) redirect('/admin/routing/new?error=missing_dep');
-  if (hasArr && !payload.arr) redirect('/admin/routing/new?error=missing_arr');
+  if (!payload.arr) redirect('/admin/routing/new?error=missing_arr');
   if (!payload.route) redirect('/admin/routing/new?error=missing');
 
   const row = await insertDynamic('routes', payload);

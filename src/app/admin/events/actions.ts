@@ -2,7 +2,6 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { requireEventsManager } from '@/lib/auth/guards';
 import { sql } from '@/lib/db';
-import { tableHasColumn } from '@/lib/schema';
 import { normalizeBool, normalizeText } from '@/lib/admin/crud';
 
 function pickText(formData: FormData, key: string) {
@@ -25,20 +24,8 @@ function datePartFromDateTimeLocal(dt: string | null | undefined): string {
   return s.slice(0, 10);
 }
 
-
-async function getMaxShiftsPerUser(eventId: number): Promise<number> {
-  try {
-    const hasCol = await tableHasColumn('events', 'max_shifts_per_user');
-    if (!hasCol) return 1;
-    const rows = await sql<{ max_shifts_per_user: any }[]>`
-      SELECT max_shifts_per_user FROM events WHERE id = ${eventId} LIMIT 1
-    `;
-    const n = Number(rows?.[0]?.max_shifts_per_user);
-    const i = Number.isFinite(n) ? Math.floor(n) : 1;
-    return i >= 1 ? i : 1;
-  } catch {
-    return 1;
-  }
+async function getMaxShiftsPerUser(_eventId: number): Promise<number> {
+  return 1;
 }
 
 async function countAssignedShifts(eventId: number, controllerCid: string): Promise<number> {
@@ -62,17 +49,10 @@ export async function createEventAction(formData: FormData) {
   const start_at = normalizeText(formData.get('start_at')) ?? '';
   const end_at = normalizeText(formData.get('end_at')) ?? '';
 
-  const maxShiftsRaw = normalizeText(formData.get('max_shifts_per_user')) ?? '';
-  const max_shifts_per_user = (() => {
-    const n = Number(maxShiftsRaw);
-    const i = Number.isFinite(n) ? Math.floor(n) : 0;
-    return i >= 1 ? i : 1;
-  })();
-
   const payload = {
     name: normalizeText(formData.get('name')) ?? '',
     event_date: datePartFromDateTimeLocal(start_at),
-    time_start: start_at, // dump stores ISO-like datetime strings here
+    time_start: start_at,
     time_end: end_at,
     description: normalizeText(formData.get('description')) ?? '',
     shift_1: normalizeText(formData.get('shift_1_label')) ?? '',
@@ -82,28 +62,18 @@ export async function createEventAction(formData: FormData) {
     published: yesNoFromBool(normalizeBool(formData.get('published'))),
     assignments_published: normalizeBool(formData.get('assignments_published')) ? 1 : 0,
     archived: normalizeBool(formData.get('archived')) ? 1 : 0,
-    max_shifts_per_user,
   };
 
   if (!payload.name) redirect('/admin/events/new?error=missing');
   if (!payload.event_date || !payload.time_start) redirect('/admin/events/new?error=missing_date');
-  const hasMaxShifts = await tableHasColumn('events', 'max_shifts_per_user').catch(() => false);
 
-  const rows = hasMaxShifts
-    ? await sql<{ id: number }[]>`
-        INSERT INTO events
-          (name, event_date, time_start, time_end, description, shift_1, shift_2, host, banner_path, published, assignments_published, archived, max_shifts_per_user)
-        VALUES
-          (${payload.name}, ${payload.event_date}, ${payload.time_start}, ${payload.time_end}, ${payload.description}, ${payload.shift_1}, ${payload.shift_2}, ${payload.host}, ${payload.banner_path}, ${payload.published}, ${payload.assignments_published}, ${payload.archived}, ${payload.max_shifts_per_user})
-        RETURNING id
-      `
-    : await sql<{ id: number }[]>`
-        INSERT INTO events
-          (name, event_date, time_start, time_end, description, shift_1, shift_2, host, banner_path, published, assignments_published, archived)
-        VALUES
-          (${payload.name}, ${payload.event_date}, ${payload.time_start}, ${payload.time_end}, ${payload.description}, ${payload.shift_1}, ${payload.shift_2}, ${payload.host}, ${payload.banner_path}, ${payload.published}, ${payload.assignments_published}, ${payload.archived})
-        RETURNING id
-      `;
+  const rows = await sql<{ id: number }[]>`
+    INSERT INTO events
+      (name, event_date, time_start, time_end, description, shift_1, shift_2, host, banner_path, published, assignments_published, archived)
+    VALUES
+      (${payload.name}, ${payload.event_date}, ${payload.time_start}, ${payload.time_end}, ${payload.description}, ${payload.shift_1}, ${payload.shift_2}, ${payload.host}, ${payload.banner_path}, ${payload.published}, ${payload.assignments_published}, ${payload.archived})
+    RETURNING id
+  `;
 
   const id = rows?.[0]?.id;
   if (!id) redirect('/admin/events?error=create_failed');
@@ -125,13 +95,6 @@ export async function updateEventAction(formData: FormData) {
   const start_at = normalizeText(formData.get('start_at')) ?? '';
   const end_at = normalizeText(formData.get('end_at')) ?? '';
 
-  const maxShiftsRaw = normalizeText(formData.get('max_shifts_per_user')) ?? '';
-  const max_shifts_per_user = (() => {
-    const n = Number(maxShiftsRaw);
-    const i = Number.isFinite(n) ? Math.floor(n) : 0;
-    return i >= 1 ? i : 1;
-  })();
-
   const payload = {
     name: normalizeText(formData.get('name')) ?? '',
     event_date: datePartFromDateTimeLocal(start_at) || (normalizeText(formData.get('event_date')) ?? ''),
@@ -145,50 +108,26 @@ export async function updateEventAction(formData: FormData) {
     published: yesNoFromBool(normalizeBool(formData.get('published'))),
     assignments_published: normalizeBool(formData.get('assignments_published')) ? 1 : 0,
     archived: normalizeBool(formData.get('archived')) ? 1 : 0,
-    max_shifts_per_user,
   };
-  const hasMaxShifts = await tableHasColumn('events', 'max_shifts_per_user').catch(() => false);
 
-  if (hasMaxShifts) {
-    await sql`
-      UPDATE events
-      SET
-        name = ${payload.name},
-        event_date = ${payload.event_date},
-        time_start = ${payload.time_start},
-        time_end = ${payload.time_end},
-        description = ${payload.description},
-        shift_1 = ${payload.shift_1},
-        shift_2 = ${payload.shift_2},
-        host = ${payload.host},
-        banner_path = ${payload.banner_path},
-        published = ${payload.published},
-        assignments_published = ${payload.assignments_published},
-        archived = ${payload.archived},
-        max_shifts_per_user = ${payload.max_shifts_per_user}
-      WHERE id = ${id}
-    `;
-  } else {
-    await sql`
-      UPDATE events
-      SET
-        name = ${payload.name},
-        event_date = ${payload.event_date},
-        time_start = ${payload.time_start},
-        time_end = ${payload.time_end},
-        description = ${payload.description},
-        shift_1 = ${payload.shift_1},
-        shift_2 = ${payload.shift_2},
-        host = ${payload.host},
-        banner_path = ${payload.banner_path},
-        published = ${payload.published},
-        assignments_published = ${payload.assignments_published},
-        archived = ${payload.archived}
-      WHERE id = ${id}
-    `;
-  }
+  await sql`
+    UPDATE events
+    SET
+      name = ${payload.name},
+      event_date = ${payload.event_date},
+      time_start = ${payload.time_start},
+      time_end = ${payload.time_end},
+      description = ${payload.description},
+      shift_1 = ${payload.shift_1},
+      shift_2 = ${payload.shift_2},
+      host = ${payload.host},
+      banner_path = ${payload.banner_path},
+      published = ${payload.published},
+      assignments_published = ${payload.assignments_published},
+      archived = ${payload.archived}
+    WHERE id = ${id}
+  `;
 
-  // If Shift 2 is disabled (blank label), clear any stored Shift 2 assignments.
   if (!String(payload.shift_2 ?? '').trim()) {
     await sql`UPDATE event_positions SET shift_2 = '' WHERE event_id = ${id}`;
   }
@@ -208,7 +147,6 @@ export async function deleteEventAction(formData: FormData) {
   const id = pickId(formData, 'id');
   if (!id) redirect('/admin/events?error=missing_id');
 
-  // MyISAM tables: do manual cascade.
   await sql`DELETE FROM event_signups WHERE event_id = ${id}`;
   await sql`DELETE FROM event_positions WHERE event_id = ${id}`;
   await sql`DELETE FROM events WHERE id = ${id}`;
@@ -234,11 +172,9 @@ export async function addEventPositionAction(formData: FormData) {
   const position_name = position_name_raw ? position_name_raw.toUpperCase() : undefined;
   if (!position_name) redirect(`/admin/events/${eventId}?error=pos_missing`);
 
-  // NOT NULL columns in dump; use empty strings if unset.
   const shift1 = pickText(formData, 'shift_1') ?? '';
   const shift2 = pickText(formData, 'shift_2') ?? '';
 
-  // Prevent duplicates (same event + position_name).
   const existing = await sql<{ id: number }[]>`
     SELECT id FROM event_positions WHERE event_id = ${eventIdNum} AND position_name = ${position_name} LIMIT 1
   `;
@@ -248,9 +184,6 @@ export async function addEventPositionAction(formData: FormData) {
     redirect(`/admin/events/${eventId}?pos_exists=1`);
   }
 
-  
-
-  // If Shift 2 is not enabled for this event, disallow setting Shift 2 during add.
   if (String(shift2 ?? '').trim()) {
     const ev = await sql<{ shift_2?: string | null }[]>`SELECT shift_2 FROM events WHERE id = ${eventIdNum} LIMIT 1`;
     const hasShift2 = Boolean(String(ev?.[0]?.shift_2 ?? '').trim());
@@ -260,7 +193,6 @@ export async function addEventPositionAction(formData: FormData) {
     }
   }
 
-  // Enforce: controller may only be assigned to up to max_shifts_per_user shifts for this event.
   const maxShifts = await getMaxShiftsPerUser(eventIdNum);
   if (maxShifts > 0) {
     const addCounts: Record<string, number> = {};
@@ -277,6 +209,7 @@ export async function addEventPositionAction(formData: FormData) {
       }
     }
   }
+
   await sql`
     INSERT INTO event_positions (event_id, position_name, shift_1, shift_2)
     VALUES (${eventIdNum}, ${position_name}, ${shift1}, ${shift2})
@@ -295,7 +228,6 @@ export async function deleteEventPositionAction(formData: FormData) {
   const posId = pickId(formData, 'id');
   if (!eventId || !posId) redirect('/admin/events?error=missing');
 
-  // Cascade signups (existing uses position_id).
   await sql`DELETE FROM event_signups WHERE position_id = ${posId}`;
   await sql`DELETE FROM event_positions WHERE id = ${posId}`;
 
@@ -314,12 +246,9 @@ export async function setEventPositionAssignmentsAction(formData: FormData) {
 
   const shift1 = normalizeText(formData.get('shift_1')) ?? '';
   const shift2 = normalizeText(formData.get('shift_2')) ?? '';
-
-
   const eventIdNum = Number(eventId);
   if (!Number.isFinite(eventIdNum)) redirect('/admin/events');
 
-  // If Shift 2 is not enabled for this event, disallow assigning to Shift 2.
   if (String(shift2 ?? '').trim()) {
     const ev = await sql<{ shift_2?: string | null }[]>`SELECT shift_2 FROM events WHERE id = ${eventIdNum} LIMIT 1`;
     const hasShift2 = Boolean(String(ev?.[0]?.shift_2 ?? '').trim());
@@ -329,7 +258,6 @@ export async function setEventPositionAssignmentsAction(formData: FormData) {
     }
   }
 
-  // Enforce max shifts per controller.
   const maxShifts = await getMaxShiftsPerUser(eventIdNum);
   if (maxShifts > 0) {
     const cur = await sql<{ shift_1?: string | null; shift_2?: string | null }[]>`
@@ -340,7 +268,7 @@ export async function setEventPositionAssignmentsAction(formData: FormData) {
     const new1 = String(shift1 ?? '').trim();
     const new2 = String(shift2 ?? '').trim();
 
-    const cids = { } as Record<string, true>;
+    const cids: Record<string, true> = {};
     for (const cid of [old1, old2, new1, new2]) {
       const c = String(cid ?? '').trim();
       if (c) cids[c] = true;
@@ -401,7 +329,6 @@ export async function assignFromSignupAction(formData: FormData) {
     redirect('/admin/events');
   }
 
-  // Enforce: controller may only be assigned to up to max_shifts_per_user shifts for this event.
   const maxShifts = await getMaxShiftsPerUser(eventId);
   if (maxShifts > 0) {
     const cur = await sql<{ shift_1?: string | null; shift_2?: string | null }[]>`
@@ -422,8 +349,6 @@ export async function assignFromSignupAction(formData: FormData) {
     }
   }
 
-
-  // If Shift 2 is not enabled for this event, disallow assigning to Shift 2.
   if (shift === '2') {
     const ev = await sql<{ shift_2?: string | null }[]>`SELECT shift_2 FROM events WHERE id = ${eventId} LIMIT 1`;
     const hasShift2 = Boolean(String(ev?.[0]?.shift_2 ?? '').trim());

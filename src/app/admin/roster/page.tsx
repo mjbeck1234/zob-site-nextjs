@@ -4,7 +4,7 @@ import { FACILITY } from '@/lib/config';
 import { requireRosterCertEditor } from '@/lib/auth/guards';
 import { canIssueSoloCert, deriveRoles } from '@/lib/auth/permissions';
 import { getRoster } from '@/lib/content';
-import { tableExists, tableHasColumn } from '@/lib/schema';
+import { tableExists } from '@/lib/schema';
 import { getActiveZobSoloCertsByCid } from '@/lib/vatusa';
 import AdminRosterClient from './AdminRosterClient';
 
@@ -71,13 +71,7 @@ export default async function AdminRosterPage({
   const savedSoloRaw = typeof searchParams?.savedSolo === 'string' ? searchParams?.savedSolo : Array.isArray(searchParams?.savedSolo) ? searchParams?.savedSolo[0] : undefined;
   const savedSolo = savedSoloRaw && /^[0-9]+$/.test(savedSoloRaw) ? savedSoloRaw : undefined;
 
-  // Older DBs may not have these columns yet; we warn in UI.
-  const hasCertColumns = hasOverrides
-    ? (await tableHasColumn('roster_overrides', 's1_override').catch(() => false)) &&
-      (await tableHasColumn('roster_overrides', 's2_override').catch(() => false)) &&
-      (await tableHasColumn('roster_overrides', 's3_override').catch(() => false)) &&
-      (await tableHasColumn('roster_overrides', 'c1_override').catch(() => false))
-    : false;
+  const hasCertColumns = hasOverrides;
 
   const soloByCid = await getActiveZobSoloCertsByCid().catch(() => ({}));
 

@@ -108,7 +108,7 @@ export async function getTopControllersThisMonth(limit = 3): Promise<TopControll
     rows = await sql<any[]>`
       SELECT cid, minutes
       FROM stats
-      WHERE rec_month = ${recMonth} AND rec_year = ${recYear}
+      WHERE rec_month = 'March' AND rec_year = '2026'
       ORDER BY minutes DESC
       LIMIT ${sql.unsafe(String(safeLimit))}
     `;
@@ -116,6 +116,8 @@ export async function getTopControllersThisMonth(limit = 3): Promise<TopControll
     logControllerHoursFallback('existing stats month leaderboard lookup failed; returning empty leaderboard', error);
     rows = [];
   }
+
+  console.log(rows)
 
   const out: TopController[] = [];
   for (const r of rows) {

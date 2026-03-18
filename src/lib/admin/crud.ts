@@ -1,5 +1,5 @@
 import { sql } from '@/lib/db';
-import { tableHasColumn, getTableColumns } from '@/lib/schema';
+import { getTableColumns } from '@/lib/schema';
 
 type Row = Record<string, any>;
 
@@ -11,13 +11,13 @@ function isNil(v: any) {
  * Best-effort insert that only includes columns that exist in the current DB.
  */
 export async function insertDynamic(table: string, data: Record<string, any>): Promise<Row> {
+  const available = new Set(await getTableColumns(table));
   const cols: string[] = [];
   const values: any[] = [];
 
   for (const [col, val] of Object.entries(data)) {
     if (typeof col !== 'string' || !col.trim()) continue;
-    const ok = await tableHasColumn(table, col).catch(() => false);
-    if (!ok) continue;
+    if (!available.has(col)) continue;
     // Allow nulls through, but ignore undefined.
     if (val === undefined) continue;
     cols.push(col);
@@ -38,6 +38,7 @@ export async function insertDynamic(table: string, data: Record<string, any>): P
  * Best-effort update by id that only updates columns that exist.
  */
 export async function updateDynamic(table: string, id: string | number, data: Record<string, any>): Promise<Row> {
+  const available = new Set(await getTableColumns(table));
   const sets: string[] = [];
   const values: any[] = [];
   let idx = 1;
@@ -45,8 +46,7 @@ export async function updateDynamic(table: string, id: string | number, data: Re
   for (const [col, val] of Object.entries(data)) {
     if (typeof col !== 'string' || !col.trim()) continue;
     if (val === undefined) continue;
-    const ok = await tableHasColumn(table, col).catch(() => false);
-    if (!ok) continue;
+    if (!available.has(col)) continue;
     sets.push(`${col} = $${idx}`);
     values.push(val);
     idx += 1;

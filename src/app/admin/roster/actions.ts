@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { sql } from '@/lib/db';
-import { tableExists, tableHasColumn } from '@/lib/schema';
+import { tableExists } from '@/lib/schema';
 import { requireRosterManager, requireRosterCertEditor, requireSoloCertIssuer } from '@/lib/auth/guards';
 import { deriveRoles } from '@/lib/auth/permissions';
 import { upsertRosterOverride, type MemberStatusOverride, type MemberTypeOverride } from '@/lib/auth/rosterOverrides';
@@ -163,24 +163,6 @@ export async function saveRosterManageAction(formData: FormData) {
   const hasTable = await tableExists('roster_overrides').catch(() => false);
   if (!hasTable) throw new Error('Missing roster_overrides table. Run sql/create_tables_extra.sql');
 
-  // Ensure expected columns exist (older installs may not have the new fields yet).
-  const needed = [
-    's1_override',
-    's2_override',
-    's3_override',
-    'c1_override',
-    'pref_name_override',
-    'active_override',
-    'able_event_signups_override',
-    'able_training_sessions_override',
-    'operating_initials_override',
-  ];
-  for (const col of needed) {
-    const ok = await tableHasColumn('roster_overrides', col).catch(() => false);
-    if (!ok) {
-      throw new Error('Missing roster_overrides columns for certifications. Re-run sql/create_tables_extra.sql');
-    }
-  }
 
   const s1 = parseEndorse(formData.get('s1_override'));
   const s2 = parseEndorse(formData.get('s2_override'));
