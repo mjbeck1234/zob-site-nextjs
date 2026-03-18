@@ -1546,7 +1546,7 @@ useEffect(() => {
       const resp = await fetch('/api/ids/ramp/claim', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(isPilot ? { icao, standId, mode: 'pilot' } : { icao, standId, callsign: cs }),
+        body: JSON.stringify(isPilot ? { icao, standId, standLabel: claimStand.label, mode: 'pilot' } : { icao, standId, standLabel: claimStand.label, callsign: cs }),
       });
       if (!resp.ok) {
         const j = await resp.json().catch(() => ({}));
@@ -1576,7 +1576,7 @@ useEffect(() => {
       const resp = await fetch('/api/ids/ramp/claim', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ icao: claimStand.icao, standId: claimStand.standId }),
+        body: JSON.stringify({ icao: claimStand.icao, standId: claimStand.standId, standLabel: claimStand.label }),
       });
       if (!resp.ok) {
         const j = await resp.json().catch(() => ({}));
@@ -1623,6 +1623,7 @@ useEffect(() => {
         body: JSON.stringify({
           icao: claimStand.icao,
           standId: claimStand.standId,
+          standLabel: claimStand.label,
           hold: nextHold,
           ...(isPilot
             ? { mode: 'pilot', note: nextHold ? pilotExtra : '' }

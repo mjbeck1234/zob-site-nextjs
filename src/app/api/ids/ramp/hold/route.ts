@@ -18,6 +18,7 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => ({} as any));
     const icao = String(body?.icao ?? 'KDTW').trim().toUpperCase();
     const standId = String(body?.standId ?? '').trim();
+    const standLabel = String(body?.standLabel ?? body?.standRef ?? '').trim();
     const hold = Boolean(body?.hold ?? true);
     const modeRaw = String(body?.mode ?? '').trim().toLowerCase();
     let note = String(body?.note ?? '').trim();
@@ -67,7 +68,7 @@ export async function POST(req: Request) {
     // Pilot reservations are fixed to 30 minutes.
     const ttlMinutes = modeRaw === 'pilot' && hold ? 30 : undefined;
 
-    const res = await setRampStandHold(icao, standId, hold, note, ttlMinutes, createdByCid, createdByMode);
+    const res = await setRampStandHold(icao, standId, hold, note, ttlMinutes, createdByCid, createdByMode, standLabel);
     if (!res.ok) {
       const code = String(res.error ?? 'Failed to update hold').trim();
       const status = code === 'stand_already_held' ? 409 : 400;

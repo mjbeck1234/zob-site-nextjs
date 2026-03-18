@@ -134,6 +134,37 @@ function configFor(icao: string): RampAirportConfig {
   return cfg;
 }
 
+
+function normalizeStandLookup(v?: string | null): string {
+  return normRef(v ?? '')
+    .replace(/\s+/g, '')
+    .trim();
+}
+
+function resolveStandByLookup(stands: RampStand[], standId: string, standLabel?: string | null): RampStand | undefined {
+  const idRaw = String(standId || '').trim();
+  const idNorm = idRaw.toLowerCase();
+  const labelNorm = normalizeStandLookup(standLabel ?? '');
+
+  if (idRaw) {
+    const exact = stands.find((s) => String(s.id || '').trim() == idRaw);
+    if (exact) return exact;
+
+    const bySuffix = stands.find((s) => {
+      const sid = String(s.id || '').trim().toLowerCase();
+      return sid === idNorm || sid.endsWith(`:${idNorm}`) || sid.endsWith(`/` + idNorm);
+    });
+    if (bySuffix) return bySuffix;
+  }
+
+  if (labelNorm) {
+    const byLabel = stands.find((s) => normalizeStandLookup(s.ref ?? s.name ?? '') === labelNorm);
+    if (byLabel) return byLabel;
+  }
+
+  return undefined;
+}
+
 function standScore(s: RampStand): number {
   // Prefer higher-quality stand points when OSM contains both "gate" and "parking_position" at the same location.
   // We strongly prefer something with a usable ref.
@@ -1364,7 +1395,8 @@ export async function getRampGroundTraffic(icao: string): Promise<RampGroundTraf
 export async function claimRampStand(
   icao: string,
   standId: string,
-  callsign: string
+  callsign: string,
+  standLabel?: string | null
 ): Promise<{ ok: boolean; error?: string }> {
   const cfg = configFor(icao);
   const up = cfg.icao;
@@ -1375,12 +1407,13 @@ export async function claimRampStand(
   if (!/^[A-Z0-9]{2,12}$/.test(cs)) return { ok: false, error: 'Invalid callsign format' };
 
   const { stands, bbox } = await getRampStands(up);
-  const stand = stands.find((s) => s.id === stId);
+  const stand = resolveStandByLookup(stands, stId, standLabel);
   if (!stand) return { ok: false, error: 'Stand not found' };
+  const resolvedStandId = String(stand.id || '').trim();
 
   // If the stand is held, treat as unavailable (unless the user is explicitly overriding by assigning here).
   // We choose the simple rule: claiming clears any hold on that stand.
-  const hk = holdKey(up, stId);
+  const hk = holdKey(up, resolvedStandId);
   if (rampHolds.has(hk)) {
     rampHolds.delete(hk);
     bumpHoldRev(up);
@@ -1406,7 +1439,7 @@ export async function claimRampStand(
   const now = Date.now();
   // TTL: 6h by default; it will auto-drop if the aircraft disappears/moves fast.
   const expiresAt = now + 6 * 60 * 60_000;
-  rampClaims.set(claimKey(up, stId), { icao: up, standId: stId, callsign: cs, createdAt: now, expiresAt });
+  rampClaims.set(claimKey(up, resolvedStandId), { icao: up, standId: resolvedStandId, callsign: cs, createdAt: now, expiresAt });
   bumpRev(up);
   return { ok: true };
 }
@@ -1414,7 +1447,8 @@ export async function claimRampStand(
 export async function claimRampStandOffline(
   icao: string,
   standId: string,
-  callsign: string
+  callsign: string,
+  standLabel?: string | null
 ): Promise<{ ok: boolean; error?: string }> {
   const cfg = configFor(icao);
   const up = cfg.icao;
@@ -1425,11 +1459,12 @@ export async function claimRampStandOffline(
   if (!/^[A-Z0-9]{2,12}$/.test(cs)) return { ok: false, error: 'Invalid callsign format' };
 
   const { stands } = await getRampStands(up);
-  const stand = stands.find((s) => s.id === stId);
+  const stand = resolveStandByLookup(stands, stId, standLabel);
   if (!stand) return { ok: false, error: 'Stand not found' };
+  const resolvedStandId = String(stand.id || '').trim();
 
   // Clear any hold on this stand (claiming implies intent to occupy).
-  const hk = holdKey(up, stId);
+  const hk = holdKey(up, resolvedStandId);
   if (rampHolds.has(hk)) {
     rampHolds.delete(hk);
     bumpHoldRev(up);
@@ -1443,17 +1478,21 @@ export async function claimRampStandOffline(
   const now = Date.now();
   // Offline claims are intended for prefiled departures. TTL: 6h (same as connected claims).
   const expiresAt = now + 6 * 60 * 60_000;
-  rampClaims.set(claimKey(up, stId), { icao: up, standId: stId, callsign: cs, createdAt: now, expiresAt, offline: true });
+  rampClaims.set(claimKey(up, resolvedStandId), { icao: up, standId: resolvedStandId, callsign: cs, createdAt: now, expiresAt, offline: true });
   bumpRev(up);
   return { ok: true };
 }
 
-export async function unclaimRampStand(icao: string, standId: string): Promise<{ ok: boolean; error?: string }> {
+export async function unclaimRampStand(icao: string, standId: string, standLabel?: string | null): Promise<{ ok: boolean; error?: string }> {
   const cfg = configFor(icao);
   const up = cfg.icao;
   const stId = String(standId || '').trim();
-  if (!stId) return { ok: false, error: 'Missing standId' };
-  rampClaims.delete(claimKey(up, stId));
+  if (!stId && !String(standLabel || '').trim()) return { ok: false, error: 'Missing standId' };
+  const { stands } = await getRampStands(up);
+  const stand = resolveStandByLookup(stands, stId, standLabel);
+  const resolvedStandId = String(stand?.id || stId).trim();
+  if (!resolvedStandId) return { ok: false, error: 'Stand not found' };
+  rampClaims.delete(claimKey(up, resolvedStandId));
   bumpRev(up);
   return { ok: true };
 }
@@ -1465,7 +1504,8 @@ export async function setRampStandHold(
   note?: string,
   ttlMinutes?: number,
   createdByCid?: number,
-  createdByMode?: string
+  createdByMode?: string,
+  standLabel?: string | null
 ): Promise<{ ok: boolean; expiresAt?: number; persisted?: boolean; dbEnabled?: boolean; error?: string }> {
   const cfg = configFor(icao);
   const up = cfg.icao;
@@ -1473,15 +1513,16 @@ export async function setRampStandHold(
   if (!stId) return { ok: false, error: 'Missing standId' };
 
   const { stands } = await getRampStands(up);
-  const stand = stands.find((s) => s.id === stId);
+  const stand = resolveStandByLookup(stands, stId, standLabel);
   if (!stand) return { ok: false, error: 'Stand not found' };
+  const resolvedStandId = String(stand.id || '').trim();
 
   // Store a human-friendly label (e.g. C27 / A56) alongside the OSM stand id.
   // This is what we show on the Pilot page as "Your reserved gate".
   const standRef = String(stand.ref ?? stand.name ?? '').trim();
   const standRefNorm = standRef ? standRef.toUpperCase() : null;
 
-  const k = holdKey(up, stId);
+  const k = holdKey(up, resolvedStandId);
 
   const dbOn = rampHoldDbEnabled();
 
@@ -1492,7 +1533,7 @@ export async function setRampStandHold(
 
   if (!hold) {
     // Remove from DB (if enabled) and from in-memory fallback.
-    const deleted = await deleteHoldDb(up, stId);
+    const deleted = await deleteHoldDb(up, resolvedStandId);
     rampHolds.delete(k);
     bumpHoldRev(up);
     return { ok: true, persisted: dbOn ? deleted : false, dbEnabled: dbOn };
@@ -1511,7 +1552,7 @@ export async function setRampStandHold(
   if (dbOn && hold && modeLower === 'pilot' && cidNum) {
     const r = await upsertPilotHoldDbUnique({
       icao: up,
-      standId: stId,
+      standId: resolvedStandId,
       standRef: standRefNorm,
       note: n || undefined,
       createdByCid: cidNum,
@@ -1528,7 +1569,7 @@ export async function setRampStandHold(
   } else {
     saved = await upsertHoldDb({
       icao: up,
-      standId: stId,
+      standId: resolvedStandId,
       standRef: standRefNorm,
       note: n || undefined,
       createdByCid: cidNum,
@@ -1559,7 +1600,7 @@ export async function setRampStandHold(
 
     rampHolds.set(k, {
       icao: up,
-      standId: stId,
+      standId: resolvedStandId,
       ...(standRefNorm ? { standRef: standRefNorm } : {}),
       note: n || undefined,
       createdAt: now,
